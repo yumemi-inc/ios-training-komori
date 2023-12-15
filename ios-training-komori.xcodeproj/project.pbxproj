@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */; };
+		18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */; };
+		18FB048E2B2C1DB300ABCF62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048D2B2C1DB300ABCF62 /* ViewController.swift */; };
+		18FB04912B2C1DB300ABCF62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FB048F2B2C1DB300ABCF62 /* Main.storyboard */; };
+		18FB04932B2C1DB400ABCF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FB04922B2C1DB400ABCF62 /* Assets.xcassets */; };
+		18FB04962B2C1DB400ABCF62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */; };
+		18FB04A12B2C1DB400ABCF62 /* ios_training_komoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04A02B2C1DB400ABCF62 /* ios_training_komoriTests.swift */; };
+		18FB04AB2B2C1DB400ABCF62 /* ios_training_komoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04AA2B2C1DB400ABCF62 /* ios_training_komoriUITests.swift */; };
+		18FB04AD2B2C1DB400ABCF62 /* ios_training_komoriUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04AC2B2C1DB400ABCF62 /* ios_training_komoriUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18FB049D2B2C1DB400ABCF62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18FB047E2B2C1DB300ABCF62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18FB04852B2C1DB300ABCF62;
+			remoteInfo = "ios-training-komori";
+		};
+		18FB04A72B2C1DB400ABCF62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18FB047E2B2C1DB300ABCF62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18FB04852B2C1DB300ABCF62;
+			remoteInfo = "ios-training-komori";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18FB04862B2C1DB300ABCF62 /* ios-training-komori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-training-komori.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		18FB048D2B2C1DB300ABCF62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18FB04902B2C1DB300ABCF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18FB04922B2C1DB400ABCF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18FB04952B2C1DB400ABCF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18FB04972B2C1DB400ABCF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FB049C2B2C1DB400ABCF62 /* ios-training-komoriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-training-komoriTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FB04A02B2C1DB400ABCF62 /* ios_training_komoriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_training_komoriTests.swift; sourceTree = "<group>"; };
+		18FB04A62B2C1DB400ABCF62 /* ios-training-komoriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-training-komoriUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FB04AA2B2C1DB400ABCF62 /* ios_training_komoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_training_komoriUITests.swift; sourceTree = "<group>"; };
+		18FB04AC2B2C1DB400ABCF62 /* ios_training_komoriUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_training_komoriUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18FB04832B2C1DB300ABCF62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB04992B2C1DB400ABCF62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB04A32B2C1DB400ABCF62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18FB047D2B2C1DB300ABCF62 = {
+			isa = PBXGroup;
+			children = (
+				18FB04882B2C1DB300ABCF62 /* ios-training-komori */,
+				18FB049F2B2C1DB400ABCF62 /* ios-training-komoriTests */,
+				18FB04A92B2C1DB400ABCF62 /* ios-training-komoriUITests */,
+				18FB04872B2C1DB300ABCF62 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18FB04872B2C1DB300ABCF62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18FB04862B2C1DB300ABCF62 /* ios-training-komori.app */,
+				18FB049C2B2C1DB400ABCF62 /* ios-training-komoriTests.xctest */,
+				18FB04A62B2C1DB400ABCF62 /* ios-training-komoriUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18FB04882B2C1DB300ABCF62 /* ios-training-komori */ = {
+			isa = PBXGroup;
+			children = (
+				18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */,
+				18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */,
+				18FB048D2B2C1DB300ABCF62 /* ViewController.swift */,
+				18FB048F2B2C1DB300ABCF62 /* Main.storyboard */,
+				18FB04922B2C1DB400ABCF62 /* Assets.xcassets */,
+				18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */,
+				18FB04972B2C1DB400ABCF62 /* Info.plist */,
+			);
+			path = "ios-training-komori";
+			sourceTree = "<group>";
+		};
+		18FB049F2B2C1DB400ABCF62 /* ios-training-komoriTests */ = {
+			isa = PBXGroup;
+			children = (
+				18FB04A02B2C1DB400ABCF62 /* ios_training_komoriTests.swift */,
+			);
+			path = "ios-training-komoriTests";
+			sourceTree = "<group>";
+		};
+		18FB04A92B2C1DB400ABCF62 /* ios-training-komoriUITests */ = {
+			isa = PBXGroup;
+			children = (
+				18FB04AA2B2C1DB400ABCF62 /* ios_training_komoriUITests.swift */,
+				18FB04AC2B2C1DB400ABCF62 /* ios_training_komoriUITestsLaunchTests.swift */,
+			);
+			path = "ios-training-komoriUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18FB04852B2C1DB300ABCF62 /* ios-training-komori */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FB04B02B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komori" */;
+			buildPhases = (
+				18FB04822B2C1DB300ABCF62 /* Sources */,
+				18FB04832B2C1DB300ABCF62 /* Frameworks */,
+				18FB04842B2C1DB300ABCF62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ios-training-komori";
+			productName = "ios-training-komori";
+			productReference = 18FB04862B2C1DB300ABCF62 /* ios-training-komori.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18FB049B2B2C1DB400ABCF62 /* ios-training-komoriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FB04B32B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komoriTests" */;
+			buildPhases = (
+				18FB04982B2C1DB400ABCF62 /* Sources */,
+				18FB04992B2C1DB400ABCF62 /* Frameworks */,
+				18FB049A2B2C1DB400ABCF62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18FB049E2B2C1DB400ABCF62 /* PBXTargetDependency */,
+			);
+			name = "ios-training-komoriTests";
+			productName = "ios-training-komoriTests";
+			productReference = 18FB049C2B2C1DB400ABCF62 /* ios-training-komoriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		18FB04A52B2C1DB400ABCF62 /* ios-training-komoriUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FB04B62B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komoriUITests" */;
+			buildPhases = (
+				18FB04A22B2C1DB400ABCF62 /* Sources */,
+				18FB04A32B2C1DB400ABCF62 /* Frameworks */,
+				18FB04A42B2C1DB400ABCF62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18FB04A82B2C1DB400ABCF62 /* PBXTargetDependency */,
+			);
+			name = "ios-training-komoriUITests";
+			productName = "ios-training-komoriUITests";
+			productReference = 18FB04A62B2C1DB400ABCF62 /* ios-training-komoriUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18FB047E2B2C1DB300ABCF62 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					18FB04852B2C1DB300ABCF62 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					18FB049B2B2C1DB400ABCF62 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 18FB04852B2C1DB300ABCF62;
+					};
+					18FB04A52B2C1DB400ABCF62 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 18FB04852B2C1DB300ABCF62;
+					};
+				};
+			};
+			buildConfigurationList = 18FB04812B2C1DB300ABCF62 /* Build configuration list for PBXProject "ios-training-komori" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18FB047D2B2C1DB300ABCF62;
+			productRefGroup = 18FB04872B2C1DB300ABCF62 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18FB04852B2C1DB300ABCF62 /* ios-training-komori */,
+				18FB049B2B2C1DB400ABCF62 /* ios-training-komoriTests */,
+				18FB04A52B2C1DB400ABCF62 /* ios-training-komoriUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18FB04842B2C1DB300ABCF62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FB04962B2C1DB400ABCF62 /* LaunchScreen.storyboard in Resources */,
+				18FB04932B2C1DB400ABCF62 /* Assets.xcassets in Resources */,
+				18FB04912B2C1DB300ABCF62 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB049A2B2C1DB400ABCF62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB04A42B2C1DB400ABCF62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18FB04822B2C1DB300ABCF62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FB048E2B2C1DB300ABCF62 /* ViewController.swift in Sources */,
+				18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */,
+				18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB04982B2C1DB400ABCF62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FB04A12B2C1DB400ABCF62 /* ios_training_komoriTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB04A22B2C1DB400ABCF62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FB04AB2B2C1DB400ABCF62 /* ios_training_komoriUITests.swift in Sources */,
+				18FB04AD2B2C1DB400ABCF62 /* ios_training_komoriUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18FB049E2B2C1DB400ABCF62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18FB04852B2C1DB300ABCF62 /* ios-training-komori */;
+			targetProxy = 18FB049D2B2C1DB400ABCF62 /* PBXContainerItemProxy */;
+		};
+		18FB04A82B2C1DB400ABCF62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18FB04852B2C1DB300ABCF62 /* ios-training-komori */;
+			targetProxy = 18FB04A72B2C1DB400ABCF62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18FB048F2B2C1DB300ABCF62 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18FB04902B2C1DB300ABCF62 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18FB04952B2C1DB400ABCF62 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18FB04AE2B2C1DB400ABCF62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		18FB04AF2B2C1DB400ABCF62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18FB04B12B2C1DB400ABCF62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ios-training-komori/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.littleforest.ios-training-komori";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		18FB04B22B2C1DB400ABCF62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ios-training-komori/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.littleforest.ios-training-komori";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		18FB04B42B2C1DB400ABCF62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.littleforest.ios-training-komoriTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-training-komori.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ios-training-komori";
+			};
+			name = Debug;
+		};
+		18FB04B52B2C1DB400ABCF62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.littleforest.ios-training-komoriTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-training-komori.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ios-training-komori";
+			};
+			name = Release;
+		};
+		18FB04B72B2C1DB400ABCF62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.littleforest.ios-training-komoriUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ios-training-komori";
+			};
+			name = Debug;
+		};
+		18FB04B82B2C1DB400ABCF62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.littleforest.ios-training-komoriUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ios-training-komori";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18FB04812B2C1DB300ABCF62 /* Build configuration list for PBXProject "ios-training-komori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FB04AE2B2C1DB400ABCF62 /* Debug */,
+				18FB04AF2B2C1DB400ABCF62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FB04B02B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FB04B12B2C1DB400ABCF62 /* Debug */,
+				18FB04B22B2C1DB400ABCF62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FB04B32B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komoriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FB04B42B2C1DB400ABCF62 /* Debug */,
+				18FB04B52B2C1DB400ABCF62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FB04B62B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komoriUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FB04B72B2C1DB400ABCF62 /* Debug */,
+				18FB04B82B2C1DB400ABCF62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18FB047E2B2C1DB300ABCF62 /* Project object */;
+}
