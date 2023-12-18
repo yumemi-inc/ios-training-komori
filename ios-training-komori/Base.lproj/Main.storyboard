@@ -50,9 +50,6 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="edZ-P9-Ib9" firstAttribute="width" secondItem="sjz-7K-reb" secondAttribute="width" id="aDj-0Y-E5f"/>
-                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJc-5M-ydg" userLabel="Close Button">
                                 <rect key="frame" x="114" y="614.33333333333337" width="67" height="34.333333333333371"/>
