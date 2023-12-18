@@ -26,7 +26,7 @@
                                             <constraint firstAttribute="width" secondItem="sjz-7K-reb" secondAttribute="height" multiplier="1:1" id="1tJ-ye-KNq"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edZ-P9-Ib9">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="edZ-P9-Ib9">
                                         <rect key="frame" x="0.0" y="196.33333333333331" width="196.33333333333334" height="20.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-22-TZ1" userLabel="Left Label">
@@ -44,10 +44,8 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="hm5-yg-9cu" secondAttribute="trailing" id="9Lj-9K-Bnr"/>
-                                            <constraint firstItem="hm5-yg-9cu" firstAttribute="width" secondItem="edZ-P9-Ib9" secondAttribute="width" multiplier="0.5" id="Bn4-eW-hOl"/>
                                             <constraint firstItem="hm5-yg-9cu" firstAttribute="leading" secondItem="WPO-22-TZ1" secondAttribute="trailing" id="HYb-mD-DhO"/>
                                             <constraint firstItem="WPO-22-TZ1" firstAttribute="trailing" secondItem="hm5-yg-9cu" secondAttribute="leading" id="fgT-VX-O9h"/>
-                                            <constraint firstItem="WPO-22-TZ1" firstAttribute="width" secondItem="edZ-P9-Ib9" secondAttribute="width" multiplier="0.5" id="ml5-Y3-GmY"/>
                                             <constraint firstItem="WPO-22-TZ1" firstAttribute="leading" secondItem="edZ-P9-Ib9" secondAttribute="leading" id="tV3-pP-hcn"/>
                                         </constraints>
                                     </stackView>
