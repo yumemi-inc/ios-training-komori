@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,13 +23,33 @@
                                     <constraint firstAttribute="width" secondItem="sjz-7K-reb" secondAttribute="height" multiplier="1:1" id="1tJ-ye-KNq"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPO-22-TZ1" userLabel="Left Label">
+                                <rect key="frame" x="98.333333333333343" y="524.33333333333337" width="98.333333333333343" height="21"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <color key="textColor" name="Blue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hm5-yg-9cu" userLabel="Right Label">
+                                <rect key="frame" x="196.66666666666666" y="524.33333333333337" width="97.999999999999972" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="Red"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sjz-7K-reb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2HH-do-cMb"/>
+                            <constraint firstItem="hm5-yg-9cu" firstAttribute="trailing" secondItem="sjz-7K-reb" secondAttribute="trailing" id="2gB-JF-B5Y"/>
+                            <constraint firstItem="WPO-22-TZ1" firstAttribute="trailing" secondItem="hm5-yg-9cu" secondAttribute="leading" id="B9s-py-JnA"/>
                             <constraint firstItem="sjz-7K-reb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Gln-iU-zu0"/>
+                            <constraint firstItem="hm5-yg-9cu" firstAttribute="leading" secondItem="WPO-22-TZ1" secondAttribute="trailing" id="MNI-Of-KsK"/>
+                            <constraint firstItem="WPO-22-TZ1" firstAttribute="width" secondItem="sjz-7K-reb" secondAttribute="width" multiplier="0.5" id="PUj-63-dgj"/>
+                            <constraint firstItem="hm5-yg-9cu" firstAttribute="width" secondItem="sjz-7K-reb" secondAttribute="width" multiplier="0.5" id="Pjn-hV-H2s"/>
+                            <constraint firstItem="hm5-yg-9cu" firstAttribute="top" secondItem="sjz-7K-reb" secondAttribute="bottom" id="XXt-AS-9dP"/>
                             <constraint firstItem="sjz-7K-reb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iw5-W8-RGn"/>
+                            <constraint firstItem="WPO-22-TZ1" firstAttribute="top" secondItem="sjz-7K-reb" secondAttribute="bottom" id="xbj-2G-342"/>
+                            <constraint firstItem="WPO-22-TZ1" firstAttribute="leading" secondItem="sjz-7K-reb" secondAttribute="leading" id="yGM-vA-n19"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +59,12 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="Blue">
+            <color red="0.20499999821186066" green="0.53700000047683716" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Red">
+            <color red="1" green="0.210999995470047" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
