@@ -32,15 +32,15 @@ class WeatherViewController: UIViewController {
     private func loadWeatherImage(weatherCondition: WeatherCondition?) {
         switch weatherCondition {
         case .sunny:
-            weatherImage.image = UIImage(named:"img_sunny")?.withRenderingMode(.alwaysTemplate)
+            weatherImage.image = UIImage(named:"img_sunny")
             weatherImage.tintColor = .systemRed
 
         case .cloudy:
-            weatherImage.image = UIImage(named: "img_cloudy")?.withRenderingMode(.alwaysTemplate)
+            weatherImage.image = UIImage(named: "img_cloudy")
             weatherImage.tintColor = .systemGray
 
         case .rainy:
-            weatherImage.image = UIImage(named: "img_rainy")?.withRenderingMode(.alwaysTemplate)
+            weatherImage.image = UIImage(named: "img_rainy")
             weatherImage.tintColor = .systemBlue
 
         default:
