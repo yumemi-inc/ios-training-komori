@@ -20,7 +20,7 @@ class WeatherModel {
 
 enum WeatherCondition: String {
 
-    case sunny = "sunny"
-    case cloudy = "cloudy"
-    case rainy = "rainy"
+    case sunny
+    case cloudy
+    case rainy
 }
