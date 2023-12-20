@@ -60,6 +60,9 @@
                                 <rect key="frame" x="207.33333333333334" y="614.33333333333337" width="76.333333333333343" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Reload"/>
+                                <connections>
+                                    <action selector="onReloadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qsi-PL-o3t"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

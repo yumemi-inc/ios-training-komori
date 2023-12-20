@@ -9,11 +9,14 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    private let weatherModel = WeatherModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func onReloadButtonTapped(_ sender: Any) {
+        weatherModel.fetch()
+    }
 }
-
