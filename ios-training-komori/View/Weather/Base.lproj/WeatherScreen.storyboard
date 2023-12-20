@@ -77,6 +77,9 @@
                             <constraint firstItem="aJc-5M-ydg" firstAttribute="top" secondItem="TKr-E4-YZM" secondAttribute="bottom" constant="80" id="y1N-Qj-Fwl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="weatherImage" destination="sjz-7K-reb" id="9pW-5V-5RH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

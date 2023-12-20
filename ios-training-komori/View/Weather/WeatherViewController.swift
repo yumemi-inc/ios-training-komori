@@ -6,17 +6,45 @@
 //
 
 import UIKit
+import Combine
 
 class WeatherViewController: UIViewController {
 
     private let weatherModel = WeatherModel()
+    private var cancellables = Set<AnyCancellable>()
+
+    @IBOutlet weak var weatherImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        weatherModel.$condition
+            .sink { [weak self] condition in
+                self?.loadWeatherImage(weatherCondition: condition)
+            }
+            .store(in: &cancellables)
     }
 
     @IBAction func onReloadButtonTapped(_ sender: Any) {
         weatherModel.fetch()
+    }
+
+    private func loadWeatherImage(weatherCondition: WeatherCondition?) {
+        switch weatherCondition {
+        case .sunny:
+            weatherImage.image = UIImage(named:"img_sunny")?.withRenderingMode(.alwaysTemplate)
+            weatherImage.tintColor = .systemRed
+
+        case .cloudy:
+            weatherImage.image = UIImage(named: "img_cloudy")?.withRenderingMode(.alwaysTemplate)
+            weatherImage.tintColor = .systemGray
+
+        case .rainy:
+            weatherImage.image = UIImage(named: "img_rainy")?.withRenderingMode(.alwaysTemplate)
+            weatherImage.tintColor = .systemBlue
+
+        default:
+            return
+        }
     }
 }
