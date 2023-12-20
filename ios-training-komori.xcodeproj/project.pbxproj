@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F4D9B2B32937300A7433B /* WeatherModel.swift */; };
 		18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */; };
 		18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */; };
 		18FB048E2B2C1DB300ABCF62 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048D2B2C1DB300ABCF62 /* WeatherViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		185F4D9B2B32937300A7433B /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		18FB04862B2C1DB300ABCF62 /* ios-training-komori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-training-komori.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
+		185F4D9A2B32936300A7433B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				185F4D9B2B32937300A7433B /* WeatherModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18FB047D2B2C1DB300ABCF62 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +137,7 @@
 		18FB04882B2C1DB300ABCF62 /* ios-training-komori */ = {
 			isa = PBXGroup;
 			children = (
+				185F4D9A2B32936300A7433B /* Model */,
 				185F4D972B3291C400A7433B /* View */,
 				18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */,
 				18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */,
@@ -292,6 +303,7 @@
 			files = (
 				18FB048E2B2C1DB300ABCF62 /* WeatherViewController.swift in Sources */,
 				18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */,
+				185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */,
 				18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
