@@ -10,7 +10,7 @@ import YumemiWeather
 
 class WeatherModel {
 
-    @Published var condition: WeatherCondition?
+    @Published private(set) var condition: WeatherCondition?
 
     func fetch() {
         let conditionStr = YumemiWeather.fetchWeatherCondition()
