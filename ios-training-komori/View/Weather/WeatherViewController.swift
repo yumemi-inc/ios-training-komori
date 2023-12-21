@@ -13,7 +13,7 @@ class WeatherViewController: UIViewController {
     private let weatherModel = WeatherModel()
     private var cancellables = Set<AnyCancellable>()
 
-    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet @ViewLoading var weatherImage: UIImageView
 
     override func viewDidLoad() {
         super.viewDidLoad()
