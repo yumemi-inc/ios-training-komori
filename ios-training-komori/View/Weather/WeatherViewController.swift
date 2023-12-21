@@ -12,6 +12,7 @@ class WeatherViewController: UIViewController {
 
     private let weatherModel = WeatherModel()
     private var subscriptions = Set<AnyCancellable>()
+    private let area = "tokyo"
 
     @IBOutlet @ViewLoading var weatherImage: UIImageView
 
@@ -28,7 +29,7 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch()
+        weatherModel.fetch(at: area)
     }
 
     private func loadWeatherImage(weatherCondition: WeatherCondition) {
