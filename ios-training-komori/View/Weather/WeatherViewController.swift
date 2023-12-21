@@ -20,7 +20,9 @@ class WeatherViewController: UIViewController {
 
         weatherModel.$condition
             .sink { [weak self] condition in
-                self?.loadWeatherImage(weatherCondition: condition)
+                if let condition {
+                    self?.loadWeatherImage(weatherCondition: condition)
+                }
             }
             .store(in: &cancellables)
     }
@@ -29,7 +31,7 @@ class WeatherViewController: UIViewController {
         weatherModel.fetch()
     }
 
-    private func loadWeatherImage(weatherCondition: WeatherCondition?) {
+    private func loadWeatherImage(weatherCondition: WeatherCondition) {
         switch weatherCondition {
         case .sunny:
             weatherImage.image = UIImage(named:"img_sunny")
@@ -42,9 +44,6 @@ class WeatherViewController: UIViewController {
         case .rainy:
             weatherImage.image = UIImage(named: "img_rainy")
             weatherImage.tintColor = .systemBlue
-
-        default:
-            return
         }
     }
 }
