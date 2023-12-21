@@ -13,8 +13,8 @@ class WeatherModel {
     @Published private(set) var condition: WeatherCondition?
 
     func fetch() {
-        let conditionStr = YumemiWeather.fetchWeatherCondition()
-        condition = WeatherCondition(rawValue: conditionStr)
+        let conditionValue = YumemiWeather.fetchWeatherCondition()
+        condition = WeatherCondition(rawValue: conditionValue)
     }
 }
 

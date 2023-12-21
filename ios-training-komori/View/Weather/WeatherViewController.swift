@@ -11,7 +11,7 @@ import Combine
 class WeatherViewController: UIViewController {
 
     private let weatherModel = WeatherModel()
-    private var cancellables = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
 
     @IBOutlet @ViewLoading var weatherImage: UIImageView
 
@@ -24,7 +24,7 @@ class WeatherViewController: UIViewController {
                     self?.loadWeatherImage(weatherCondition: condition)
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &subscriptions)
     }
 
     @IBAction func onReloadButtonTapped(_ sender: Any) {
