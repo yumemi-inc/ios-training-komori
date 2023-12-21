@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F4D9B2B32937300A7433B /* WeatherModel.swift */; };
 		18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */; };
 		18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */; };
-		18FB048E2B2C1DB300ABCF62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048D2B2C1DB300ABCF62 /* ViewController.swift */; };
-		18FB04912B2C1DB300ABCF62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FB048F2B2C1DB300ABCF62 /* Main.storyboard */; };
+		18FB048E2B2C1DB300ABCF62 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048D2B2C1DB300ABCF62 /* WeatherViewController.swift */; };
+		18FB04912B2C1DB300ABCF62 /* WeatherScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FB048F2B2C1DB300ABCF62 /* WeatherScreen.storyboard */; };
 		18FB04932B2C1DB400ABCF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FB04922B2C1DB400ABCF62 /* Assets.xcassets */; };
 		18FB04962B2C1DB400ABCF62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */; };
 		18FB04A12B2C1DB400ABCF62 /* ios_training_komoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04A02B2C1DB400ABCF62 /* ios_training_komoriTests.swift */; };
@@ -37,11 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		185F4D9B2B32937300A7433B /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		18FB04862B2C1DB300ABCF62 /* ios-training-komori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-training-komori.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		18FB048D2B2C1DB300ABCF62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18FB04902B2C1DB300ABCF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18FB048D2B2C1DB300ABCF62 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		18FB04902B2C1DB300ABCF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WeatherScreen.storyboard; sourceTree = "<group>"; };
 		18FB04922B2C1DB400ABCF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18FB04952B2C1DB400ABCF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18FB04972B2C1DB400ABCF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,6 +80,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		185F4D972B3291C400A7433B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				185F4D992B3292CB00A7433B /* Launch */,
+				185F4D982B3291CD00A7433B /* Weather */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		185F4D982B3291CD00A7433B /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				18FB048D2B2C1DB300ABCF62 /* WeatherViewController.swift */,
+				18FB048F2B2C1DB300ABCF62 /* WeatherScreen.storyboard */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		185F4D992B3292CB00A7433B /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		185F4D9A2B32936300A7433B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				185F4D9B2B32937300A7433B /* WeatherModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18FB047D2B2C1DB300ABCF62 = {
 			isa = PBXGroup;
 			children = (
@@ -101,12 +137,11 @@
 		18FB04882B2C1DB300ABCF62 /* ios-training-komori */ = {
 			isa = PBXGroup;
 			children = (
+				185F4D9A2B32936300A7433B /* Model */,
+				185F4D972B3291C400A7433B /* View */,
 				18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */,
 				18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */,
-				18FB048D2B2C1DB300ABCF62 /* ViewController.swift */,
-				18FB048F2B2C1DB300ABCF62 /* Main.storyboard */,
 				18FB04922B2C1DB400ABCF62 /* Assets.xcassets */,
-				18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */,
 				18FB04972B2C1DB400ABCF62 /* Info.plist */,
 			);
 			path = "ios-training-komori";
@@ -241,7 +276,7 @@
 			files = (
 				18FB04962B2C1DB400ABCF62 /* LaunchScreen.storyboard in Resources */,
 				18FB04932B2C1DB400ABCF62 /* Assets.xcassets in Resources */,
-				18FB04912B2C1DB300ABCF62 /* Main.storyboard in Resources */,
+				18FB04912B2C1DB300ABCF62 /* WeatherScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,8 +301,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18FB048E2B2C1DB300ABCF62 /* ViewController.swift in Sources */,
+				18FB048E2B2C1DB300ABCF62 /* WeatherViewController.swift in Sources */,
 				18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */,
+				185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */,
 				18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,12 +341,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		18FB048F2B2C1DB300ABCF62 /* Main.storyboard */ = {
+		18FB048F2B2C1DB300ABCF62 /* WeatherScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				18FB04902B2C1DB300ABCF62 /* Base */,
 			);
-			name = Main.storyboard;
+			name = WeatherScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		18FB04942B2C1DB400ABCF62 /* LaunchScreen.storyboard */ = {
@@ -454,7 +490,7 @@
 				INFOPLIST_FILE = "ios-training-komori/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = WeatherScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -481,7 +517,7 @@
 				INFOPLIST_FILE = "ios-training-komori/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = WeatherScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
