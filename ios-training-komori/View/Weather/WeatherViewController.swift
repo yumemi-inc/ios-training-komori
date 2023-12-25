@@ -24,7 +24,7 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch(at: area)
+        weatherModel.fetch(area: area, date: Date())
     }
 }
 
