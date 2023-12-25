@@ -26,17 +26,15 @@ class WeatherViewController: UIViewController {
     private func setupSubscriptions() {
         weatherModel.$condition
             .sink { [weak self] condition in
-                if let condition {
+                if let condition  {
                     self?.loadWeatherImage(weatherCondition: condition)
                 }
             }
             .store(in: &subscriptions)
 
-        weatherModel.$error
+        weatherModel.errorPublisher
             .sink { [weak self] error in
-                if let error {
-                    self?.showAlert(error: error)
-                }
+                self?.showAlert(error: error)
             }
             .store(in: &subscriptions)
     }
