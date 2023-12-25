@@ -26,7 +26,7 @@ class WeatherViewController: UIViewController {
     private func setupSubscriptions() {
         weatherModel.$condition
             .sink { [weak self] condition in
-                if let condition  {
+                if let condition {
                     self?.loadWeatherImage(weatherCondition: condition)
                 }
             }
