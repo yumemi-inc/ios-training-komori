@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import YumemiWeather
 
 class WeatherViewController: UIViewController {
 
@@ -19,6 +20,10 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupSubscriptions()
+    }
+
+    private func setupSubscriptions() {
         weatherModel.$condition
             .sink { [weak self] condition in
                 if let condition {
@@ -26,10 +31,14 @@ class WeatherViewController: UIViewController {
                 }
             }
             .store(in: &subscriptions)
-    }
 
-    @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch(at: area)
+        weatherModel.$error
+            .sink { [weak self] error in
+                if let error {
+                    self?.showAlert(error: error)
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     private func loadWeatherImage(weatherCondition: WeatherCondition) {
@@ -46,5 +55,31 @@ class WeatherViewController: UIViewController {
             weatherImage.image = UIImage(named: "img_rainy")
             weatherImage.tintColor = .systemBlue
         }
+    }
+
+    private func showAlert(error: Error) {
+        let message = switch error {
+        case is YumemiWeatherError: "天気の取得に失敗しました。\n時間を置いて再度操作してください。"
+        default: "エラーが発生しました。\n時間を置いて再度操作してください。"
+        }
+
+        let alertController = UIAlertController(
+            title: "エラー",
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let closeAction = UIAlertAction(
+            title: "OK",
+            style: .default
+        )
+
+        alertController.addAction(closeAction)
+
+        present(alertController, animated: true)
+    }
+
+    @IBAction func onReloadButtonTapped(_ sender: Any) {
+        weatherModel.fetch(at: area)
     }
 }
