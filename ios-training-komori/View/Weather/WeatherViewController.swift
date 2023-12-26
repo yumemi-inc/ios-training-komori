@@ -56,13 +56,31 @@ class WeatherViewController: UIViewController {
     }
 
     private func showAlert(error: Error) {
-        let message = switch error {
-        case is YumemiWeatherError: "天気の取得に失敗しました。\n時間を置いて再度操作してください。"
-        default: "エラーが発生しました。\n時間を置いて再度操作してください。"
+        let (title, message) = switch error {
+        case let yumemiWeatherError as YumemiWeatherError:
+            switch yumemiWeatherError {
+            case .invalidParameterError:
+                (
+                    "天気予報エラー",
+                    "データの取得に失敗しました。\nアプリを再起動してもう一度試してください。"
+                )
+
+            case .unknownError:
+                (
+                    "天気予報エラー",
+                    "データの取得中に予期せぬエラーが発生しました。\nアプリを再起動してもう一度試してください。"
+                )
+            }
+
+        default:
+            (
+                "不明なエラー",
+                "予期せぬエラーが発生しました。\nアプリを再起動してもう一度試してください。"
+            )
         }
 
         let alertController = UIAlertController(
-            title: "エラー",
+            title: title,
             message: message,
             preferredStyle: .alert
         )
