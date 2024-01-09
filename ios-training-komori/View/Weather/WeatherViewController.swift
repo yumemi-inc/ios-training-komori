@@ -23,6 +23,13 @@ class WeatherViewController: UIViewController {
         setupSubscriptions()
     }
 
+    @IBAction func onReloadButtonTapped(_ sender: Any) {
+        weatherModel.fetch(at: area)
+    }
+}
+
+// MARK: - Private functions
+private extension WeatherViewController {
     private func setupSubscriptions() {
         weatherModel.$condition
             .sink { [weak self] condition in
@@ -57,8 +64,8 @@ class WeatherViewController: UIViewController {
 
     private func showAlert(error: Error) {
         let title = switch error {
-            case is YumemiWeatherError: "天気予報エラー"
-            default: "不明なエラー"
+        case is YumemiWeatherError: "天気予報エラー"
+        default: "不明なエラー"
         }
 
         let alertController = UIAlertController(
@@ -75,9 +82,5 @@ class WeatherViewController: UIViewController {
         alertController.addAction(closeAction)
 
         present(alertController, animated: true)
-    }
-
-    @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch(at: area)
     }
 }
