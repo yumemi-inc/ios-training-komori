@@ -7,29 +7,39 @@
 
 import UIKit
 import Combine
+import YumemiWeather
 
 class WeatherViewController: UIViewController {
 
     private let weatherModel = WeatherModel()
-    private var cancellables = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
+    private let area = "tokyo"
 
-    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet @ViewLoading var weatherImage: UIImageView
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupSubscriptions()
+    }
+
+    private func setupSubscriptions() {
         weatherModel.$condition
             .sink { [weak self] condition in
-                self?.loadWeatherImage(weatherCondition: condition)
+                if let condition {
+                    self?.loadWeatherImage(weatherCondition: condition)
+                }
             }
-            .store(in: &cancellables)
+            .store(in: &subscriptions)
+
+        weatherModel.errorPublisher
+            .sink { [weak self] error in
+                self?.showAlert(error: error)
+            }
+            .store(in: &subscriptions)
     }
 
-    @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch()
-    }
-
-    private func loadWeatherImage(weatherCondition: WeatherCondition?) {
+    private func loadWeatherImage(weatherCondition: WeatherCondition) {
         switch weatherCondition {
         case .sunny:
             weatherImage.image = UIImage(named:"img_sunny")
@@ -42,9 +52,27 @@ class WeatherViewController: UIViewController {
         case .rainy:
             weatherImage.image = UIImage(named: "img_rainy")
             weatherImage.tintColor = .systemBlue
-
-        default:
-            return
         }
+    }
+
+    private func showAlert(error: Error) {
+        let alertController = UIAlertController(
+            title: error.alertTitle,
+            message: error.alertMessage,
+            preferredStyle: .alert
+        )
+
+        let closeAction = UIAlertAction(
+            title: "OK",
+            style: .default
+        )
+
+        alertController.addAction(closeAction)
+
+        present(alertController, animated: true)
+    }
+
+    @IBAction func onReloadButtonTapped(_ sender: Any) {
+        weatherModel.fetch(at: area)
     }
 }

@@ -6,15 +6,25 @@
 //
 
 import Foundation
+import Combine
 import YumemiWeather
 
 class WeatherModel {
 
     @Published private(set) var condition: WeatherCondition?
+    
+    private let errorSubject: PassthroughSubject<Error, Never> = .init()
+    var errorPublisher: AnyPublisher<Error, Never> {
+        errorSubject.eraseToAnyPublisher()
+    }
 
-    func fetch() {
-        let conditionStr = YumemiWeather.fetchWeatherCondition()
-        condition = WeatherCondition(rawValue: conditionStr)
+    func fetch(at area: String) {
+        do {
+            let conditionValue = try YumemiWeather.fetchWeatherCondition(at: area)
+            condition = WeatherCondition(rawValue: conditionValue)
+        } catch {
+            errorSubject.send(error)
+        }
     }
 }
 
