@@ -11,7 +11,7 @@ import YumemiWeather
 
 class WeatherModel {
 
-    @Published private(set) var condition: WeatherCondition?
+    @Published private(set) var weather: Weather?
 
     private let errorSubject: PassthroughSubject<Error, Never> = .init()
     var errorPublisher: AnyPublisher<Error, Never> {
@@ -37,12 +37,11 @@ class WeatherModel {
             guard let resData = res.data(using: .utf8) else { return }
             guard let resJson = try JSONSerialization.jsonObject(with: resData) as? [String: Any] else { return }
 
-            let weather = Weather(
+            weather = Weather(
                 condition: WeatherCondition(rawValue: resJson["weather_condition"] as! String) ?? .sunny,
                 minTemperature: resJson["min_temperature"] as! Int,
                 maxTemperature: resJson["max_temperature"] as! Int
             )
-            condition = weather.condition
         } catch {
             errorSubject.send(error)
         }

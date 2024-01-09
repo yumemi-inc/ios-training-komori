@@ -16,6 +16,8 @@ class WeatherViewController: UIViewController {
     private let area = "tokyo"
 
     @IBOutlet @ViewLoading var weatherImage: UIImageView
+    @IBOutlet @ViewLoading var minTemperatureLabel: UILabel
+    @IBOutlet @ViewLoading var maxTemperatureLabel: UILabel
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +33,10 @@ class WeatherViewController: UIViewController {
 // MARK: - Private functions
 private extension WeatherViewController {
     private func setupSubscriptions() {
-        weatherModel.$condition
-            .sink { [weak self] condition in
-                if let condition {
-                    self?.loadWeatherImage(weatherCondition: condition)
+        weatherModel.$weather
+            .sink { [weak self] weather in
+                if let weather {
+                    self?.loadViews(for: weather)
                 }
             }
             .store(in: &subscriptions)
@@ -44,6 +46,11 @@ private extension WeatherViewController {
                 self?.showAlert(error: error)
             }
             .store(in: &subscriptions)
+    }
+
+    private func loadViews(for weather: Weather) {
+        loadWeatherImage(weatherCondition: weather.condition)
+        loadTemperatureLabels(min: weather.minTemperature, max: weather.maxTemperature)
     }
 
     private func loadWeatherImage(weatherCondition: WeatherCondition) {
@@ -60,6 +67,11 @@ private extension WeatherViewController {
             weatherImage.image = UIImage(named: "img_rainy")
             weatherImage.tintColor = .systemBlue
         }
+    }
+
+    private func loadTemperatureLabels(min minTemperature: Int, max maxTemperature: Int) {
+        minTemperatureLabel.text = String(minTemperature)
+        maxTemperatureLabel.text = String(maxTemperature)
     }
 
     private func showAlert(error: Error) {
