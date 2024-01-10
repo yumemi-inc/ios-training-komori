@@ -76,7 +76,8 @@ private extension WeatherViewController {
 
     private func showAlert(error: Error) {
         let title = switch error {
-        case is YumemiWeatherError: "天気予報エラー"
+        case is YumemiWeatherError: "データ取得エラー"
+        case is JSONError: "データ処理エラー"
         default: "不明なエラー"
         }
 
