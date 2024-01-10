@@ -118,14 +118,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1884E0EF2B4D3589004160CE /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				1884E0F22B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		1884E0F72B4D5715004160CE /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				1884E0FB2B4E361A004160CE /* JSONError.swift */,
+				1884E0F22B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -166,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				1884E0F72B4D5715004160CE /* Common */,
-				1884E0EF2B4D3589004160CE /* Extension */,
 				185F4D9A2B32936300A7433B /* Model */,
 				185F4D972B3291C400A7433B /* View */,
 				18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */,

@@ -12,8 +12,8 @@ extension YumemiWeatherError: LocalizedError {
     
     public var errorDescription: String? {
         switch self {
-        case .invalidParameterError: "不正なリクエスト形式です。"
-        case .unknownError: "予期せぬエラーが発生しました。"
+        case .invalidParameterError: "API Request contains invalid parameter."
+        case .unknownError: "Unknown error happened."
         }
     }
 }

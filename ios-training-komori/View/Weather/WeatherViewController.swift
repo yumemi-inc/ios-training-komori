@@ -43,7 +43,7 @@ private extension WeatherViewController {
 
         weatherModel.errorPublisher
             .sink { [weak self] error in
-                self?.showAlert(error: error)
+                self?.showAlert(for: error)
             }
             .store(in: &subscriptions)
     }
@@ -74,16 +74,13 @@ private extension WeatherViewController {
         maxTemperatureLabel.text = String(maxTemperature)
     }
 
-    private func showAlert(error: Error) {
-        let title = switch error {
-        case is YumemiWeatherError: "データ取得エラー"
-        case is JSONError: "データ処理エラー"
-        default: "不明なエラー"
-        }
+    private func showAlert(for error: Error) {
+        let title = getAlertTitle(for: error)
+        let message = getAlertMessage(for: error)
 
         let alertController = UIAlertController(
             title: title,
-            message: "\(error.localizedDescription)\nアプリを再起動してもう一度試してください。",
+            message: message,
             preferredStyle: .alert
         )
 
@@ -95,5 +92,32 @@ private extension WeatherViewController {
         alertController.addAction(closeAction)
 
         present(alertController, animated: true)
+    }
+
+    private func getAlertTitle(for error: Error) -> String {
+        let title = switch error {
+        case is YumemiWeatherError: "データ取得エラー"
+        case is JSONError: "データ処理エラー"
+        default: "不明なエラー"
+        }
+
+        return title
+    }
+
+    private func getAlertMessage(for error: Error) -> String {
+        let message = switch error {
+        case let yumemiWeatherError as YumemiWeatherError:
+            switch yumemiWeatherError {
+            case .invalidParameterError: "データの取得リクエストに問題があり、データを取得できませんでした。\nアプリを再起動してもう一度試してください。"
+            case .unknownError: "データの取得中に予期せぬエラーが発生しました。\nアプリを再起動してもう一度試してください。"
+            }
+        case let jsonError as JSONError:
+            switch jsonError {
+            case .encodeFailure, .decodeFailure: "データの処理中に問題が発生しました。\nアプリを再起動してもう一度試してください。"
+            }
+        default: "予期せぬエラーが発生しました。\nアプリを再起動してもう一度試してください。"
+        }
+
+        return message
     }
 }

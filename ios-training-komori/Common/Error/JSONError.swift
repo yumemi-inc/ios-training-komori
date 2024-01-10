@@ -14,8 +14,8 @@ enum JSONError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .encodeFailure: "JSONへのエンコードに失敗しました。"
-        case .decodeFailure: "JSONのデコードに失敗しました。"
+        case .encodeFailure: "Failed encoding data to JSON."
+        case .decodeFailure: "Failed decoding data from JSON."
         }
     }
 }
