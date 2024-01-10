@@ -30,8 +30,9 @@ class WeatherViewController: UIViewController {
     }
 }
 
-// MARK: - Private functions
+// MARK: - Observers
 private extension WeatherViewController {
+
     private func setupSubscriptions() {
         weatherModel.$weather
             .sink { [weak self] weather in
@@ -47,6 +48,10 @@ private extension WeatherViewController {
             }
             .store(in: &subscriptions)
     }
+}
+
+// MARK: - UI
+private extension WeatherViewController {
 
     private func loadViews(for weather: Weather) {
         loadWeatherImage(weatherCondition: weather.condition)
@@ -93,6 +98,10 @@ private extension WeatherViewController {
 
         present(alertController, animated: true)
     }
+}
+
+// MARK: - UI Utilities
+private extension WeatherViewController {
 
     private func getAlertTitle(for error: Error) -> String {
         let title = switch error {
