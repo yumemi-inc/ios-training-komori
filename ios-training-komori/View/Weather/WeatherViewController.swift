@@ -37,7 +37,7 @@ private extension WeatherViewController {
         weatherModel.$weather
             .sink { [weak self] weather in
                 if let weather {
-                    self?.loadViews(for: weather)
+                    self?.updateViews(with: weather)
                 }
             }
             .store(in: &subscriptions)
@@ -53,12 +53,12 @@ private extension WeatherViewController {
 // MARK: - UI
 private extension WeatherViewController {
 
-    func loadViews(for weather: Weather) {
-        loadWeatherImage(weatherCondition: weather.condition)
-        loadTemperatureLabels(min: weather.minTemperature, max: weather.maxTemperature)
+    func updateViews(with weather: Weather) {
+        updateWeatherImage(weatherCondition: weather.condition)
+        updateTemperatureLabels(min: weather.minTemperature, max: weather.maxTemperature)
     }
 
-    func loadWeatherImage(weatherCondition: WeatherCondition) {
+    func updateWeatherImage(weatherCondition: WeatherCondition) {
         switch weatherCondition {
         case .sunny:
             weatherImage.image = UIImage(named:"img_sunny")
@@ -74,7 +74,7 @@ private extension WeatherViewController {
         }
     }
 
-    func loadTemperatureLabels(min minTemperature: Int, max maxTemperature: Int) {
+    func updateTemperatureLabels(min minTemperature: Int, max maxTemperature: Int) {
         minTemperatureLabel.text = String(minTemperature)
         maxTemperatureLabel.text = String(maxTemperature)
     }
