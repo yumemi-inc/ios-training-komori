@@ -18,9 +18,9 @@ class WeatherModel {
         errorSubject.eraseToAnyPublisher()
     }
 
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    private lazy var dateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = TimeZone.current
         return formatter
     }()
 
