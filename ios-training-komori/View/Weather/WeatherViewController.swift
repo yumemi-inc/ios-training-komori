@@ -33,7 +33,7 @@ class WeatherViewController: UIViewController {
 // MARK: - Observers
 private extension WeatherViewController {
 
-    private func setupSubscriptions() {
+    func setupSubscriptions() {
         weatherModel.$weather
             .sink { [weak self] weather in
                 if let weather {
@@ -53,12 +53,12 @@ private extension WeatherViewController {
 // MARK: - UI
 private extension WeatherViewController {
 
-    private func loadViews(for weather: Weather) {
+    func loadViews(for weather: Weather) {
         loadWeatherImage(weatherCondition: weather.condition)
         loadTemperatureLabels(min: weather.minTemperature, max: weather.maxTemperature)
     }
 
-    private func loadWeatherImage(weatherCondition: WeatherCondition) {
+    func loadWeatherImage(weatherCondition: WeatherCondition) {
         switch weatherCondition {
         case .sunny:
             weatherImage.image = UIImage(named:"img_sunny")
@@ -74,12 +74,12 @@ private extension WeatherViewController {
         }
     }
 
-    private func loadTemperatureLabels(min minTemperature: Int, max maxTemperature: Int) {
+    func loadTemperatureLabels(min minTemperature: Int, max maxTemperature: Int) {
         minTemperatureLabel.text = String(minTemperature)
         maxTemperatureLabel.text = String(maxTemperature)
     }
 
-    private func showAlert(for error: Error) {
+    func showAlert(for error: Error) {
         let title = getAlertTitle(for: error)
         let message = getAlertMessage(for: error)
 
@@ -103,7 +103,7 @@ private extension WeatherViewController {
 // MARK: - UI Utilities
 private extension WeatherViewController {
 
-    private func getAlertTitle(for error: Error) -> String {
+    func getAlertTitle(for error: Error) -> String {
         let title = switch error {
         case is YumemiWeatherError: "データ取得エラー"
         case is JSONError: "データ処理エラー"
@@ -113,7 +113,7 @@ private extension WeatherViewController {
         return title
     }
 
-    private func getAlertMessage(for error: Error) -> String {
+    func getAlertMessage(for error: Error) -> String {
         let message = switch error {
         case let yumemiWeatherError as YumemiWeatherError:
             switch yumemiWeatherError {

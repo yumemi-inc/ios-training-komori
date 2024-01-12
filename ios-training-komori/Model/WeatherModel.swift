@@ -39,7 +39,7 @@ class WeatherModel {
 
 private extension WeatherModel {
 
-    private func encodeRequest(area: String, date: Date) throws -> String {
+    func encodeRequest(area: String, date: Date) throws -> String {
         let reqData = try JSONSerialization.data(withJSONObject: [
             "area": area,
             "date": dateFormatter.string(from: date)
@@ -52,7 +52,7 @@ private extension WeatherModel {
         return req
     }
 
-    private func decodeResponse(_ response: String) throws -> Weather {
+    func decodeResponse(_ response: String) throws -> Weather {
         guard let resData = response.data(using: .utf8),
               let resJson = try JSONSerialization.jsonObject(with: resData) as? [String: Any],
               let condition = WeatherCondition(rawValue: resJson["weather_condition"] as? String ?? ""),
