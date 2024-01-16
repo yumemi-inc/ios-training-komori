@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F4D9B2B32937300A7433B /* WeatherModel.swift */; };
-		18A5B5922B3A7E2A00E3065B /* Error+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5B5912B3A7E2A00E3065B /* Error+Alert.swift */; };
+		1884E0F32B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884E0F22B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift */; };
+		1884E0FC2B4E361A004160CE /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884E0FB2B4E361A004160CE /* JSONError.swift */; };
 		18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */; };
 		18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */; };
 		18FB048E2B2C1DB300ABCF62 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB048D2B2C1DB300ABCF62 /* WeatherViewController.swift */; };
@@ -40,7 +41,8 @@
 
 /* Begin PBXFileReference section */
 		185F4D9B2B32937300A7433B /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		18A5B5912B3A7E2A00E3065B /* Error+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Alert.swift"; sourceTree = "<group>"; };
+		1884E0F22B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YumemiWeatherError+LocalizedError.swift"; sourceTree = "<group>"; };
+		1884E0FB2B4E361A004160CE /* JSONError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
 		18FB04862B2C1DB300ABCF62 /* ios-training-komori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-training-komori.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FB048B2B2C1DB300ABCF62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,12 +118,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		18A5B5902B3A7E1600E3065B /* Extension */ = {
+		1884E0F72B4D5715004160CE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				18A5B5912B3A7E2A00E3065B /* Error+Alert.swift */,
+				1884E0FA2B4E3610004160CE /* Error */,
 			);
-			path = Extension;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		1884E0FA2B4E3610004160CE /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				1884E0FB2B4E361A004160CE /* JSONError.swift */,
+				1884E0F22B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		18FB047D2B2C1DB300ABCF62 = {
@@ -147,7 +158,7 @@
 		18FB04882B2C1DB300ABCF62 /* ios-training-komori */ = {
 			isa = PBXGroup;
 			children = (
-				18A5B5902B3A7E1600E3065B /* Extension */,
+				1884E0F72B4D5715004160CE /* Common */,
 				185F4D9A2B32936300A7433B /* Model */,
 				185F4D972B3291C400A7433B /* View */,
 				18FB04892B2C1DB300ABCF62 /* AppDelegate.swift */,
@@ -312,10 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A5B5922B3A7E2A00E3065B /* Error+Alert.swift in Sources */,
 				18FB048E2B2C1DB300ABCF62 /* WeatherViewController.swift in Sources */,
 				18FB048A2B2C1DB300ABCF62 /* AppDelegate.swift in Sources */,
+				1884E0FC2B4E361A004160CE /* JSONError.swift in Sources */,
 				185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */,
+				1884E0F32B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift in Sources */,
 				18FB048C2B2C1DB300ABCF62 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
