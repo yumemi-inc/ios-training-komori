@@ -18,55 +18,17 @@ class WeatherModel {
         errorSubject.eraseToAnyPublisher()
     }
 
-    private lazy var dateFormatter: ISO8601DateFormatter = {
-        let formatter = ISO8601DateFormatter()
-        formatter.timeZone = TimeZone.current
-        return formatter
-    }()
-
     func fetch(area: String, date: Date) {
         do {
-            let req = try encodeRequest(area: area, date: date)
-            let res = try YumemiWeather.fetchWeather(req)
-            let weather = try decodeResponse(res)
+            let request = WeatherRequest(area: area, date: date)
+            let requestJson = try WeatherMapper.encode(request)
+            let responseJson = try YumemiWeather.fetchWeather(requestJson)
+            let response = try WeatherMapper.decode(from: responseJson)
 
-            self.weather = weather
+            self.weather = WeatherMapper.map(from: response)
         } catch {
             errorSubject.send(error)
         }
-    }
-}
-
-private extension WeatherModel {
-
-    func encodeRequest(area: String, date: Date) throws -> String {
-        let reqData = try JSONSerialization.data(withJSONObject: [
-            "area": area,
-            "date": dateFormatter.string(from: date)
-        ])
-
-        guard let req = String(data: reqData, encoding: .utf8) else {
-            throw JSONError.encodeFailure
-        }
-
-        return req
-    }
-
-    func decodeResponse(_ response: String) throws -> Weather {
-        guard let resData = response.data(using: .utf8),
-              let resJson = try JSONSerialization.jsonObject(with: resData) as? [String: Any],
-              let condition = WeatherCondition(rawValue: resJson["weather_condition"] as? String ?? ""),
-              let minTemperature = resJson["min_temperature"] as? Int,
-              let maxTemperature = resJson["max_temperature"] as? Int
-        else {
-            throw JSONError.decodeFailure
-        }
-
-        return Weather(
-            condition: condition,
-            minTemperature: minTemperature,
-            maxTemperature: maxTemperature
-        )
     }
 }
 
@@ -77,7 +39,7 @@ struct Weather {
     let maxTemperature: Int
 }
 
-enum WeatherCondition: String {
+enum WeatherCondition: String, Decodable {
 
     case sunny
     case cloudy
