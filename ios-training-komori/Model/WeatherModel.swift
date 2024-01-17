@@ -20,15 +20,32 @@ class WeatherModel {
 
     func fetch(area: String, date: Date) {
         do {
-            let request = WeatherRequest(area: area, date: date)
-            let requestJson = try WeatherMapper.encode(request)
+            let requestJson = try encodeRequest(area: area, date: date)
             let responseJson = try YumemiWeather.fetchWeather(requestJson)
-            let response = try WeatherMapper.decode(from: responseJson)
+            let weather = try decodeResponse(responseJson)
 
-            self.weather = WeatherMapper.map(from: response)
+            self.weather = weather
         } catch {
             errorSubject.send(error)
         }
+    }
+}
+
+private extension WeatherModel {
+    
+    func encodeRequest(area: String, date: Date) throws -> String {
+        let request = WeatherRequest(area: area, date: date)
+        let requestJson = try WeatherMapper.encode(request)
+        return requestJson
+    }
+
+    func decodeResponse(_ responseJson: String) throws -> Weather {
+        let response = try WeatherMapper.decode(from: responseJson)
+        return Weather(
+            condition: response.weatherCondition,
+            minTemperature: response.minTemperature,
+            maxTemperature: response.maxTemperature
+        )
     }
 }
 
