@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherMapper {
+enum WeatherMapper {
 
     private static let dateFormatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
