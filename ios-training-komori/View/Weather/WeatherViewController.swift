@@ -25,6 +25,10 @@ class WeatherViewController: UIViewController {
         setupSubscriptions()
     }
 
+    @IBAction func onCloseButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
     @IBAction func onReloadButtonTapped(_ sender: Any) {
         weatherModel.fetch(area: area, date: Date())
     }
