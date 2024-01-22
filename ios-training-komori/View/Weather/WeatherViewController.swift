@@ -22,7 +22,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupSubscriptions()
+        setupDataBindingsAndObservers()
     }
 
     deinit {
@@ -38,10 +38,10 @@ class WeatherViewController: UIViewController {
     }
 }
 
-// MARK: - Observers
+// MARK: - Data Bindings and Observers
 private extension WeatherViewController {
 
-    func setupSubscriptions() {
+    func setupDataBindingsAndObservers() {
         weatherModel.$weather
             .sink { [weak self] weather in
                 if let weather {
