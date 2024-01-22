@@ -25,12 +25,16 @@ class WeatherViewController: UIViewController {
         setupSubscriptions()
     }
 
+    deinit {
+        removeObservers()
+    }
+
     @IBAction func onCloseButtonTapped(_ sender: Any) {
         dismiss(animated: true)
     }
 
     @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch(area: area, date: Date())
+        reload()
     }
 }
 
@@ -51,6 +55,18 @@ private extension WeatherViewController {
                 self?.showAlert(for: error)
             }
             .store(in: &subscriptions)
+
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.willEnterForegroundNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] _ in
+            self?.reload()
+        }
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -132,5 +148,12 @@ private extension WeatherViewController {
         }
 
         return message
+    }
+}
+
+// MARK: - Data Management
+private extension WeatherViewController {
+    func reload() {
+        weatherModel.fetch(area: area, date: Date())
     }
 }
