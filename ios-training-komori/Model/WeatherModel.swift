@@ -18,17 +18,11 @@ class WeatherModel {
         errorSubject.eraseToAnyPublisher()
     }
 
-    private lazy var dateFormatter: ISO8601DateFormatter = {
-        let formatter = ISO8601DateFormatter()
-        formatter.timeZone = TimeZone.current
-        return formatter
-    }()
-
     func fetch(area: String, date: Date) {
         do {
-            let req = try encodeRequest(area: area, date: date)
-            let res = try YumemiWeather.fetchWeather(req)
-            let weather = try decodeResponse(res)
+            let requestJson = try encodeRequest(area: area, date: date)
+            let responseJson = try YumemiWeather.fetchWeather(requestJson)
+            let weather = try decodeResponse(responseJson)
 
             self.weather = weather
         } catch {
@@ -38,34 +32,19 @@ class WeatherModel {
 }
 
 private extension WeatherModel {
-
+    
     func encodeRequest(area: String, date: Date) throws -> String {
-        let reqData = try JSONSerialization.data(withJSONObject: [
-            "area": area,
-            "date": dateFormatter.string(from: date)
-        ])
-
-        guard let req = String(data: reqData, encoding: .utf8) else {
-            throw JSONError.encodeFailure
-        }
-
-        return req
+        let request = WeatherRequest(area: area, date: date)
+        let requestJson = try WeatherMapper.encode(request)
+        return requestJson
     }
 
-    func decodeResponse(_ response: String) throws -> Weather {
-        guard let resData = response.data(using: .utf8),
-              let resJson = try JSONSerialization.jsonObject(with: resData) as? [String: Any],
-              let condition = WeatherCondition(rawValue: resJson["weather_condition"] as? String ?? ""),
-              let minTemperature = resJson["min_temperature"] as? Int,
-              let maxTemperature = resJson["max_temperature"] as? Int
-        else {
-            throw JSONError.decodeFailure
-        }
-
+    func decodeResponse(_ responseJson: String) throws -> Weather {
+        let response = try WeatherMapper.decode(from: responseJson)
         return Weather(
-            condition: condition,
-            minTemperature: minTemperature,
-            maxTemperature: maxTemperature
+            condition: response.weatherCondition,
+            minTemperature: response.minTemperature,
+            maxTemperature: response.maxTemperature
         )
     }
 }
@@ -77,7 +56,7 @@ struct Weather {
     let maxTemperature: Int
 }
 
-enum WeatherCondition: String {
+enum WeatherCondition: String, Decodable {
 
     case sunny
     case cloudy
