@@ -10,6 +10,7 @@ import UIKit
 class FirstViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         performSegue(withIdentifier: "navigateToWeatherViewController", sender: nil)
     }
 }
