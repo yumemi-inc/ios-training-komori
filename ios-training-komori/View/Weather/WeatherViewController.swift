@@ -61,6 +61,7 @@ private extension WeatherViewController {
     }
 
     @objc func handleForegroundTransition() {
+        dismissPresentedAlert()
         reload()
     }
 }
@@ -112,6 +113,12 @@ private extension WeatherViewController {
         alertController.addAction(closeAction)
 
         present(alertController, animated: true)
+    }
+
+    func dismissPresentedAlert() {
+        if let alertController = presentedViewController as? UIAlertController {
+            alertController.dismiss(animated: true)
+        }
     }
 }
 
