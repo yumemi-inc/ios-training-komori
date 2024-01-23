@@ -25,10 +25,6 @@ class WeatherViewController: UIViewController {
         setupDataBindingsAndObservers()
     }
 
-    deinit {
-        removeObservers()
-    }
-
     @IBAction func onCloseButtonTapped(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -57,16 +53,15 @@ private extension WeatherViewController {
             .store(in: &subscriptions)
 
         NotificationCenter.default.addObserver(
-            forName: UIApplication.willEnterForegroundNotification,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] _ in
-            self?.reload()
-        }
+            self,
+            selector: #selector(handleForegroundTransition),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
     }
 
-    func removeObservers() {
-        NotificationCenter.default.removeObserver(self)
+    @objc func handleForegroundTransition() {
+        reload()
     }
 }
 
