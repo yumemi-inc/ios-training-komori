@@ -22,7 +22,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupSubscriptions()
+        setupDataBindingsAndObservers()
     }
 
     @IBAction func onCloseButtonTapped(_ sender: Any) {
@@ -30,14 +30,14 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func onReloadButtonTapped(_ sender: Any) {
-        weatherModel.fetch(area: area, date: Date())
+        reload()
     }
 }
 
-// MARK: - Observers
+// MARK: - Data Bindings and Observers
 private extension WeatherViewController {
 
-    func setupSubscriptions() {
+    func setupDataBindingsAndObservers() {
         weatherModel.$weather
             .sink { [weak self] weather in
                 if let weather {
@@ -51,6 +51,18 @@ private extension WeatherViewController {
                 self?.showAlert(for: error)
             }
             .store(in: &subscriptions)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleForegroundTransition),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
+    }
+
+    @objc func handleForegroundTransition() {
+        dismissPresentedAlert()
+        reload()
     }
 }
 
@@ -102,6 +114,12 @@ private extension WeatherViewController {
 
         present(alertController, animated: true)
     }
+
+    func dismissPresentedAlert() {
+        if let alertController = presentedViewController as? UIAlertController {
+            alertController.dismiss(animated: true)
+        }
+    }
 }
 
 // MARK: - UI Utilities
@@ -132,5 +150,12 @@ private extension WeatherViewController {
         }
 
         return message
+    }
+}
+
+// MARK: - Data Management
+private extension WeatherViewController {
+    func reload() {
+        weatherModel.fetch(area: area, date: Date())
     }
 }
