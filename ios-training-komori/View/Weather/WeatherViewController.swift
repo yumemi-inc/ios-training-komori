@@ -11,13 +11,25 @@ import YumemiWeather
 
 class WeatherViewController: UIViewController {
 
-    private let weatherModel = WeatherModel()
+    private let weatherModel: WeatherModel
     private var subscriptions = Set<AnyCancellable>()
     private let area = "tokyo"
 
     @IBOutlet @ViewLoading var weatherImage: UIImageView
     @IBOutlet @ViewLoading var minTemperatureLabel: UILabel
     @IBOutlet @ViewLoading var maxTemperatureLabel: UILabel
+
+    init?(
+        coder: NSCoder,
+        weatherModel: WeatherModel
+    ) {
+        self.weatherModel = weatherModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

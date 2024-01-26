@@ -102,7 +102,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="navigateToWeatherViewController" id="ndx-rK-M9Z"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="navigateToWeatherViewController" destinationCreationSelector="instantiateWeatherViewController:" id="ndx-rK-M9Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rzC-Dp-zlD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
