@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18171FCE2B63793900D282F5 /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 18171FCD2B63793900D282F5 /* Cuckoo */; };
 		185F4D9C2B32937300A7433B /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F4D9B2B32937300A7433B /* WeatherModel.swift */; };
 		1884E0F32B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884E0F22B4D370D004160CE /* YumemiWeatherError+LocalizedError.swift */; };
 		1884E0FC2B4E361A004160CE /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884E0FB2B4E361A004160CE /* JSONError.swift */; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18171FCE2B63793900D282F5 /* Cuckoo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +235,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18FB04B32B2C1DB400ABCF62 /* Build configuration list for PBXNativeTarget "ios-training-komoriTests" */;
 			buildPhases = (
+				18171FCF2B63795900D282F5 /* Generate Mocks with Cuckoo */,
 				18FB04982B2C1DB400ABCF62 /* Sources */,
 				18FB04992B2C1DB400ABCF62 /* Frameworks */,
 				18FB049A2B2C1DB400ABCF62 /* Resources */,
@@ -243,6 +246,9 @@
 				18FB049E2B2C1DB400ABCF62 /* PBXTargetDependency */,
 			);
 			name = "ios-training-komoriTests";
+			packageProductDependencies = (
+				18171FCD2B63793900D282F5 /* Cuckoo */,
+			);
 			productName = "ios-training-komoriTests";
 			productReference = 18FB049C2B2C1DB400ABCF62 /* ios-training-komoriTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -299,6 +305,7 @@
 			mainGroup = 18FB047D2B2C1DB300ABCF62;
 			packageReferences = (
 				18FB04B92B2C1EC600ABCF62 /* XCRemoteSwiftPackageReference "ios-training" */,
+				18171FCC2B63793900D282F5 /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = 18FB04872B2C1DB300ABCF62 /* Products */;
 			projectDirPath = "";
@@ -337,6 +344,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18171FCF2B63795900D282F5 /* Generate Mocks with Cuckoo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Mocks with Cuckoo";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0\nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--no-timestamp \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/Model/WeatherModel.swift\"\n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18FB04822B2C1DB300ABCF62 /* Sources */ = {
@@ -445,7 +473,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -508,7 +536,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -695,6 +723,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		18171FCC2B63793900D282F5 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.4;
+			};
+		};
 		18FB04B92B2C1EC600ABCF62 /* XCRemoteSwiftPackageReference "ios-training" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yumemi-inc/ios-training.git";
@@ -706,6 +742,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		18171FCD2B63793900D282F5 /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18171FCC2B63793900D282F5 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
+		};
 		18FB04BA2B2C1EC600ABCF62 /* YumemiWeather */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 18FB04B92B2C1EC600ABCF62 /* XCRemoteSwiftPackageReference "ios-training" */;
