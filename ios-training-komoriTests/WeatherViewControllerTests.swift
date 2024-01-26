@@ -115,4 +115,33 @@ final class WeatherViewControllerTests: XCTestCase {
         // Then
         XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_rainy"))
     }
+
+    func testTemperatureLabelsAreCorrectlySet() {
+        // Given
+        stub(mockWeatherProvider) { stub in
+            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
+            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
+            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
+
+            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
+            when(stub.errorPublisher.get).thenReturn(errorPublisher)
+
+            when(stub.fetch(area: any(), date: any())).then { _ in
+                let weather = Weather(
+                    condition: .sunny,
+                    minTemperature: -10,
+                    maxTemperature: 10
+                )
+                weatherSubject.send(weather)
+            }
+        }
+
+        // When
+        weatherViewController.loadViewIfNeeded()
+        weatherViewController.onReloadButtonTapped(UIButton())
+
+        // Then
+        XCTAssertEqual(weatherViewController.minTemperatureLabel.text, "-10")
+        XCTAssertEqual(weatherViewController.maxTemperatureLabel.text, "10")
+    }
 }
