@@ -9,9 +9,21 @@ import Foundation
 import Combine
 import YumemiWeather
 
-class WeatherModel {
+protocol WeatherProvider {
+
+    var weatherPublisher: AnyPublisher<Weather?, Never> { get }
+
+    var errorPublisher: AnyPublisher<Error, Never> { get }
+
+    func fetch(area: String, date: Date)
+}
+
+class WeatherModel: WeatherProvider {
 
     @Published private(set) var weather: Weather?
+    var weatherPublisher: AnyPublisher<Weather?, Never> {
+        $weather.eraseToAnyPublisher()
+    }
 
     private let errorSubject: PassthroughSubject<Error, Never> = .init()
     var errorPublisher: AnyPublisher<Error, Never> {

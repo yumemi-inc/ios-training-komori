@@ -11,7 +11,7 @@ import YumemiWeather
 
 class WeatherViewController: UIViewController {
 
-    private let weatherModel: WeatherModel
+    private let weatherProvider: WeatherProvider
     private var subscriptions = Set<AnyCancellable>()
     private let area = "tokyo"
 
@@ -21,9 +21,9 @@ class WeatherViewController: UIViewController {
 
     init?(
         coder: NSCoder,
-        weatherModel: WeatherModel
+        weatherProvider: WeatherProvider
     ) {
-        self.weatherModel = weatherModel
+        self.weatherProvider = weatherProvider
         super.init(coder: coder)
     }
 
@@ -50,7 +50,7 @@ class WeatherViewController: UIViewController {
 private extension WeatherViewController {
 
     func setupDataBindingsAndObservers() {
-        weatherModel.$weather
+        weatherProvider.weatherPublisher
             .sink { [weak self] weather in
                 if let weather {
                     self?.updateViews(with: weather)
@@ -58,7 +58,7 @@ private extension WeatherViewController {
             }
             .store(in: &subscriptions)
 
-        weatherModel.errorPublisher
+        weatherProvider.errorPublisher
             .sink { [weak self] error in
                 self?.showAlert(for: error)
             }
@@ -171,6 +171,6 @@ private extension WeatherViewController {
 // MARK: - Data Management
 private extension WeatherViewController {
     func reload() {
-        weatherModel.fetch(area: area, date: Date())
+        weatherProvider.fetch(area: area, date: Date())
     }
 }

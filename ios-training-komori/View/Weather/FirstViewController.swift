@@ -16,6 +16,6 @@ class FirstViewController: UIViewController {
     
     @IBSegueAction func instantiateWeatherViewController(_ coder: NSCoder) -> WeatherViewController? {
         let weatherModel = WeatherModel()
-        return WeatherViewController(coder: coder, weatherModel: weatherModel)
+        return WeatherViewController(coder: coder, weatherProvider: weatherModel)
     }
 }
