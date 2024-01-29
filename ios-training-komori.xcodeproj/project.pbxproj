@@ -357,6 +357,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		18171FCF2B63795900D282F5 /* Generate Mocks with Cuckoo */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
