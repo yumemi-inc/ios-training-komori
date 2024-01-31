@@ -32,6 +32,27 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherViewController = nil
     }
 
+    func testWeatherGetsReloadedOnReloadButtonTapped() {
+        // Given
+        stub(mockWeatherProvider) { stub in
+            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
+            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
+            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
+
+            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
+            when(stub.errorPublisher.get).thenReturn(errorPublisher)
+
+            when(stub.fetch(area: any(), date: any())).thenDoNothing()
+        }
+
+        // When
+        weatherViewController.loadViewIfNeeded()
+        weatherViewController.onReloadButtonTapped(UIButton())
+
+        // Then
+        verify(mockWeatherProvider).fetch(area: any(), date: any())
+    }
+
     func testSunnyImageIsSetIfSunny() {
         // Given
         stub(mockWeatherProvider) { stub in
