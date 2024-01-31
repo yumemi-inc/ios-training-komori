@@ -18,7 +18,7 @@ protocol WeatherProvider {
     func fetch(area: String, date: Date)
 }
 
-class WeatherModel: WeatherProvider {
+final class WeatherModel: WeatherProvider {
 
     @Published private(set) var weather: Weather?
     var weatherPublisher: AnyPublisher<Weather?, Never> {

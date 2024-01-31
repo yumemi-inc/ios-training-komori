@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import YumemiWeather
 
-class WeatherViewController: UIViewController {
+final class WeatherViewController: UIViewController {
 
     private let weatherProvider: WeatherProvider
     private var subscriptions = Set<AnyCancellable>()
