@@ -55,27 +55,23 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testSunnyImageIsSetIfSunny() {
         // Given
+        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
+        let weather = Weather(
+            condition: .sunny,
+            minTemperature: 0,
+            maxTemperature: 0
+        )
         stub(mockWeatherProvider) { stub in
-            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
             let weatherPublisher = weatherSubject.eraseToAnyPublisher()
             when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
 
             let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
             when(stub.errorPublisher.get).thenReturn(errorPublisher)
-
-            when(stub.fetch(area: any(), date: any())).then { _ in
-                let weather = Weather(
-                    condition: .sunny,
-                    minTemperature: 0,
-                    maxTemperature: 0
-                )
-                weatherSubject.send(weather)
-            }
         }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        weatherSubject.send(weather)
 
         // Then
         XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_sunny"))
@@ -83,27 +79,23 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testCloudyImageIsSetIfCloudy() {
         // Given
+        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
+        let weather = Weather(
+            condition: .cloudy,
+            minTemperature: 0,
+            maxTemperature: 0
+        )
         stub(mockWeatherProvider) { stub in
-            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
             let weatherPublisher = weatherSubject.eraseToAnyPublisher()
             when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
 
             let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
             when(stub.errorPublisher.get).thenReturn(errorPublisher)
-
-            when(stub.fetch(area: any(), date: any())).then { _ in
-                let weather = Weather(
-                    condition: .cloudy,
-                    minTemperature: 0,
-                    maxTemperature: 0
-                )
-                weatherSubject.send(weather)
-            }
         }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        weatherSubject.send(weather)
 
         // Then
         XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_cloudy"))
@@ -111,27 +103,23 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testRainyImageIsSetIfRainy() {
         // Given
+        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
+        let weather = Weather(
+            condition: .rainy,
+            minTemperature: 0,
+            maxTemperature: 0
+        )
         stub(mockWeatherProvider) { stub in
-            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
             let weatherPublisher = weatherSubject.eraseToAnyPublisher()
             when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
 
             let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
             when(stub.errorPublisher.get).thenReturn(errorPublisher)
-
-            when(stub.fetch(area: any(), date: any())).then { _ in
-                let weather = Weather(
-                    condition: .rainy,
-                    minTemperature: 0,
-                    maxTemperature: 0
-                )
-                weatherSubject.send(weather)
-            }
         }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        weatherSubject.send(weather)
 
         // Then
         XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_rainy"))
@@ -139,27 +127,23 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testTemperatureLabelsAreCorrectlySet() {
         // Given
+        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
+        let weather = Weather(
+            condition: .sunny,
+            minTemperature: -10,
+            maxTemperature: 10
+        )
         stub(mockWeatherProvider) { stub in
-            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
             let weatherPublisher = weatherSubject.eraseToAnyPublisher()
             when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
 
             let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
             when(stub.errorPublisher.get).thenReturn(errorPublisher)
-
-            when(stub.fetch(area: any(), date: any())).then { _ in
-                let weather = Weather(
-                    condition: .sunny,
-                    minTemperature: -10,
-                    maxTemperature: 10
-                )
-                weatherSubject.send(weather)
-            }
         }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        weatherSubject.send(weather)
 
         // Then
         XCTAssertEqual(weatherViewController.minTemperatureLabel.text, "-10")
