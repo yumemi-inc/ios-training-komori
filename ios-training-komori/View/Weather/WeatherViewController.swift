@@ -51,6 +51,7 @@ private extension WeatherViewController {
 
     func setupDataBindingsAndObservers() {
         weatherProvider.weatherPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] weather in
                 if let weather {
                     self?.updateViews(with: weather)
@@ -59,6 +60,7 @@ private extension WeatherViewController {
             .store(in: &subscriptions)
 
         weatherProvider.errorPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 self?.showAlert(for: error)
             }
