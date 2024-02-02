@@ -35,8 +35,6 @@ final class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        weatherProvider.delegate = self
-
         setupDataBindingsAndObservers()
     }
 
@@ -175,24 +173,33 @@ private extension WeatherViewController {
 private extension WeatherViewController {
     func reload() {
         startLoadingIndicator()
-        weatherProvider.fetch(area: area, date: Date())
-    }
-}
 
-// MARK: - WeatherProviderDelegate
-extension WeatherViewController: WeatherProviderDelegate {
+        weatherProvider.fetch(area: area, date: Date()) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(weather):
+                    self?.updateViews(with: weather)
+                case let .failure(error):
+                    self?.showAlert(for: error)
+                }
 
-    func weatherProvider(_ weatherProvider: WeatherProvider, didUpdateWeather weather: Weather) {
-        DispatchQueue.main.async {
-            self.updateViews(with: weather)
-            self.stopLoadingIndicator()
+                self?.stopLoadingIndicator()
+            }
         }
-    }
 
-    func weatherProvider(_ weatherProvider: WeatherProvider, didReceiveError error: Error) {
-        DispatchQueue.main.async {
-            self.showAlert(for: error)
-            self.stopLoadingIndicator()
-        }
+
+//        // Fetch weather with optional closure
+//        weatherProvider.fetchWithOptionalClosure(area: area, date: Date()) { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case let .success(weather):
+//                    self?.updateViews(with: weather)
+//                case let .failure(error):
+//                    self?.showAlert(for: error)
+//                }
+//
+//                self?.stopLoadingIndicator()
+//            }
+//        }
     }
 }

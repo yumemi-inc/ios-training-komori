@@ -10,32 +10,53 @@ import YumemiWeather
 
 protocol WeatherProvider {
 
-    var delegate: WeatherProviderDelegate? { get set }
+    func fetch(
+        area: String,
+        date: Date,
+        completion: @escaping (Result<Weather, Error>) -> Void
+    )
 
-    func fetch(area: String, date: Date)
-}
-
-protocol WeatherProviderDelegate: AnyObject {
-
-    func weatherProvider(_ weatherProvider: WeatherProvider, didUpdateWeather weather: Weather)
-
-    func weatherProvider(_ weatherProvider: WeatherProvider, didReceiveError error: Error)
+    func fetchWithOptionalClosure(
+        area: String,
+        date: Date,
+        completion: ((Result<Weather, Error>) -> Void)?
+    )
 }
 
 final class WeatherModel: WeatherProvider {
 
-    weak var delegate: WeatherProviderDelegate?
-
-    func fetch(area: String, date: Date) {
+    func fetch(
+        area: String,
+        date: Date,
+        completion: @escaping (Result<Weather, Error>) -> Void
+    ) {
         DispatchQueue.global().async { [self] in
             do {
                 let requestJson = try encodeRequest(area: area, date: date)
                 let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
                 let fetchedWeather = try decodeResponse(responseJson)
 
-                delegate?.weatherProvider(self, didUpdateWeather: fetchedWeather)
+                completion(.success(fetchedWeather))
             } catch {
-                delegate?.weatherProvider(self, didReceiveError: error)
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchWithOptionalClosure(
+        area: String,
+        date: Date,
+        completion: ((Result<Weather, Error>) -> Void)? = nil
+    ) {
+        DispatchQueue.global().async { [self] in
+            do {
+                let requestJson = try encodeRequest(area: area, date: date)
+                let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
+                let fetchedWeather = try decodeResponse(responseJson)
+
+                completion?(.success(fetchedWeather))
+            } catch {
+                completion?(.failure(error))
             }
         }
     }
