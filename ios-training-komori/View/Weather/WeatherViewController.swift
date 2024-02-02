@@ -19,6 +19,7 @@ final class WeatherViewController: UIViewController {
     @IBOutlet @ViewLoading var minTemperatureLabel: UILabel
     @IBOutlet @ViewLoading var maxTemperatureLabel: UILabel
     @IBOutlet @ViewLoading var loadingIndicator: UIActivityIndicatorView
+    @IBOutlet @ViewLoading var reloadButton: UIButton
 
     init?(
         coder: NSCoder,
@@ -57,7 +58,7 @@ private extension WeatherViewController {
                 if let weather {
                     self?.updateViews(with: weather)
                 }
-                self?.loadingIndicator.stopAnimating()
+                self?.stopLoadingIndicator()
             }
             .store(in: &subscriptions)
 
@@ -65,7 +66,7 @@ private extension WeatherViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 self?.showAlert(for: error)
-                self?.loadingIndicator.stopAnimating()
+                self?.stopLoadingIndicator()
             }
             .store(in: &subscriptions)
 
@@ -140,6 +141,16 @@ private extension WeatherViewController {
             completion?()
         }
     }
+
+    func startLoadingIndicator() {
+        loadingIndicator.startAnimating()
+        reloadButton.isEnabled = false
+    }
+
+    func stopLoadingIndicator() {
+        loadingIndicator.stopAnimating()
+        reloadButton.isEnabled = true
+    }
 }
 
 // MARK: - UI Utilities
@@ -176,7 +187,7 @@ private extension WeatherViewController {
 // MARK: - Data Management
 private extension WeatherViewController {
     func reload() {
-        loadingIndicator.startAnimating()
+        startLoadingIndicator()
         weatherProvider.fetch(area: area, date: Date())
     }
 }
