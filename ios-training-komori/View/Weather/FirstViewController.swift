@@ -13,4 +13,9 @@ class FirstViewController: UIViewController {
         super.viewDidAppear(animated)
         performSegue(withIdentifier: "navigateToWeatherViewController", sender: nil)
     }
+    
+    @IBSegueAction func instantiateWeatherViewController(_ coder: NSCoder) -> WeatherViewController? {
+        let weatherModel = WeatherModel()
+        return WeatherViewController(coder: coder, weatherProvider: weatherModel)
+    }
 }

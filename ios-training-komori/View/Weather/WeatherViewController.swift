@@ -9,15 +9,27 @@ import UIKit
 import Combine
 import YumemiWeather
 
-class WeatherViewController: UIViewController {
+final class WeatherViewController: UIViewController {
 
-    private let weatherModel = WeatherModel()
+    private let weatherProvider: WeatherProvider
     private var subscriptions = Set<AnyCancellable>()
     private let area = "tokyo"
 
     @IBOutlet @ViewLoading var weatherImage: UIImageView
     @IBOutlet @ViewLoading var minTemperatureLabel: UILabel
     @IBOutlet @ViewLoading var maxTemperatureLabel: UILabel
+
+    init?(
+        coder: NSCoder,
+        weatherProvider: WeatherProvider
+    ) {
+        self.weatherProvider = weatherProvider
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +50,7 @@ class WeatherViewController: UIViewController {
 private extension WeatherViewController {
 
     func setupDataBindingsAndObservers() {
-        weatherModel.$weather
+        weatherProvider.weatherPublisher
             .sink { [weak self] weather in
                 if let weather {
                     self?.updateViews(with: weather)
@@ -46,7 +58,7 @@ private extension WeatherViewController {
             }
             .store(in: &subscriptions)
 
-        weatherModel.errorPublisher
+        weatherProvider.errorPublisher
             .sink { [weak self] error in
                 self?.showAlert(for: error)
             }
@@ -61,8 +73,9 @@ private extension WeatherViewController {
     }
 
     @objc func handleForegroundTransition() {
-        dismissPresentedAlert()
-        reload()
+        dismissAlertIfPresented() { [weak self] in
+            self?.reload()
+        }
     }
 }
 
@@ -115,9 +128,11 @@ private extension WeatherViewController {
         present(alertController, animated: true)
     }
 
-    func dismissPresentedAlert() {
+    func dismissAlertIfPresented(completion: (() -> Void)? = nil) {
         if let alertController = presentedViewController as? UIAlertController {
-            alertController.dismiss(animated: true)
+            alertController.dismiss(animated: true, completion: completion)
+        } else {
+            completion?()
         }
     }
 }
@@ -156,6 +171,6 @@ private extension WeatherViewController {
 // MARK: - Data Management
 private extension WeatherViewController {
     func reload() {
-        weatherModel.fetch(area: area, date: Date())
+        weatherProvider.fetch(area: area, date: Date())
     }
 }
