@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OSLog
 import YumemiWeather
 
 final class WeatherViewController: UIViewController {
@@ -37,6 +38,10 @@ final class WeatherViewController: UIViewController {
         weatherProvider.delegate = self
 
         setupDataBindingsAndObservers()
+    }
+
+    deinit {
+        Logger().debug("deinit")
     }
 
     @IBAction func onCloseButtonTapped(_ sender: Any) {
