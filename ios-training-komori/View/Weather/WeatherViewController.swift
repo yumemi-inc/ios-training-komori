@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import Combine
 import YumemiWeather
 
 final class WeatherViewController: UIViewController {
 
-    private let weatherProvider: WeatherProvider
-    private var subscriptions = Set<AnyCancellable>()
+    private var weatherProvider: WeatherProvider
     private let area = "tokyo"
 
     @IBOutlet @ViewLoading var weatherImage: UIImageView
@@ -36,6 +34,8 @@ final class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        weatherProvider.delegate = self
+
         setupDataBindingsAndObservers()
     }
 
@@ -52,24 +52,6 @@ final class WeatherViewController: UIViewController {
 private extension WeatherViewController {
 
     func setupDataBindingsAndObservers() {
-        weatherProvider.weatherPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] weather in
-                if let weather {
-                    self?.updateViews(with: weather)
-                }
-                self?.stopLoadingIndicator()
-            }
-            .store(in: &subscriptions)
-
-        weatherProvider.errorPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                self?.showAlert(for: error)
-                self?.stopLoadingIndicator()
-            }
-            .store(in: &subscriptions)
-
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleForegroundTransition),
@@ -189,5 +171,23 @@ private extension WeatherViewController {
     func reload() {
         startLoadingIndicator()
         weatherProvider.fetch(area: area, date: Date())
+    }
+}
+
+// MARK: - WeatherProviderDelegate
+extension WeatherViewController: WeatherProviderDelegate {
+
+    func weatherProvider(_ weatherProvider: WeatherProvider, didUpdateWeather weather: Weather) {
+        DispatchQueue.main.async {
+            self.updateViews(with: weather)
+            self.stopLoadingIndicator()
+        }
+    }
+
+    func weatherProvider(_ weatherProvider: WeatherProvider, didReceiveError error: Error) {
+        DispatchQueue.main.async {
+            self.showAlert(for: error)
+            self.stopLoadingIndicator()
+        }
     }
 }
