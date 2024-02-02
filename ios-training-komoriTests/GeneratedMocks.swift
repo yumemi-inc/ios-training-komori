@@ -7,7 +7,6 @@
 import Cuckoo
 @testable import ios_training_komori
 
-import Combine
 import Foundation
 import YumemiWeather
 
@@ -38,30 +37,24 @@ import YumemiWeather
     
     
     
-     var weatherPublisher: AnyPublisher<Weather?, Never> {
+     var delegate: WeatherProviderDelegate? {
         get {
-            return cuckoo_manager.getter("weatherPublisher",
+            return cuckoo_manager.getter("delegate",
                 superclassCall:
                     
                     Cuckoo.MockManager.crashOnProtocolSuperclassCall()
                     ,
-                defaultCall:  __defaultImplStub!.weatherPublisher)
+                defaultCall:  __defaultImplStub!.delegate)
         }
         
-    }
-    
-    
-    
-    
-    
-     var errorPublisher: AnyPublisher<Error, Never> {
-        get {
-            return cuckoo_manager.getter("errorPublisher",
+        set {
+            cuckoo_manager.setter("delegate",
+                value: newValue,
                 superclassCall:
                     
                     Cuckoo.MockManager.crashOnProtocolSuperclassCall()
                     ,
-                defaultCall:  __defaultImplStub!.errorPublisher)
+                defaultCall: __defaultImplStub!.delegate = newValue)
         }
         
     }
@@ -101,15 +94,8 @@ import YumemiWeather
         
         
         
-        var weatherPublisher: Cuckoo.ProtocolToBeStubbedReadOnlyProperty<MockWeatherProvider, AnyPublisher<Weather?, Never>> {
-            return .init(manager: cuckoo_manager, name: "weatherPublisher")
-        }
-        
-        
-        
-        
-        var errorPublisher: Cuckoo.ProtocolToBeStubbedReadOnlyProperty<MockWeatherProvider, AnyPublisher<Error, Never>> {
-            return .init(manager: cuckoo_manager, name: "errorPublisher")
+        var delegate: Cuckoo.ProtocolToBeStubbedOptionalProperty<MockWeatherProvider, WeatherProviderDelegate> {
+            return .init(manager: cuckoo_manager, name: "delegate")
         }
         
         
@@ -141,15 +127,8 @@ import YumemiWeather
         
         
         
-        var weatherPublisher: Cuckoo.VerifyReadOnlyProperty<AnyPublisher<Weather?, Never>> {
-            return .init(manager: cuckoo_manager, name: "weatherPublisher", callMatcher: callMatcher, sourceLocation: sourceLocation)
-        }
-        
-        
-        
-        
-        var errorPublisher: Cuckoo.VerifyReadOnlyProperty<AnyPublisher<Error, Never>> {
-            return .init(manager: cuckoo_manager, name: "errorPublisher", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        var delegate: Cuckoo.VerifyOptionalProperty<WeatherProviderDelegate> {
+            return .init(manager: cuckoo_manager, name: "delegate", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
         
         
@@ -176,21 +155,12 @@ import YumemiWeather
     
     
     
-     var weatherPublisher: AnyPublisher<Weather?, Never> {
+     var delegate: WeatherProviderDelegate? {
         get {
-            return DefaultValueRegistry.defaultValue(for: (AnyPublisher<Weather?, Never>).self)
+            return DefaultValueRegistry.defaultValue(for: (WeatherProviderDelegate?).self)
         }
         
-    }
-    
-    
-    
-    
-    
-     var errorPublisher: AnyPublisher<Error, Never> {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (AnyPublisher<Error, Never>).self)
-        }
+        set { }
         
     }
     
@@ -203,6 +173,177 @@ import YumemiWeather
     
     
      func fetch(area: String, date: Date)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+ class MockWeatherProviderDelegate: WeatherProviderDelegate, Cuckoo.ProtocolMock {
+    
+     typealias MocksType = WeatherProviderDelegate
+    
+     typealias Stubbing = __StubbingProxy_WeatherProviderDelegate
+     typealias Verification = __VerificationProxy_WeatherProviderDelegate
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: false)
+
+    
+    private var __defaultImplStub: WeatherProviderDelegate?
+
+     func enableDefaultImplementation(_ stub: WeatherProviderDelegate) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+    
+     func weatherProvider(_ weatherProvider: WeatherProvider, didUpdateWeather weather: Weather)  {
+        
+    return cuckoo_manager.call(
+    """
+    weatherProvider(_: WeatherProvider, didUpdateWeather: Weather)
+    """,
+            parameters: (weatherProvider, weather),
+            escapingParameters: (weatherProvider, weather),
+            superclassCall:
+                
+                Cuckoo.MockManager.crashOnProtocolSuperclassCall()
+                ,
+            defaultCall: __defaultImplStub!.weatherProvider(weatherProvider, didUpdateWeather: weather))
+        
+    }
+    
+    
+    
+    
+    
+     func weatherProvider(_ weatherProvider: WeatherProvider, didReceiveError error: Error)  {
+        
+    return cuckoo_manager.call(
+    """
+    weatherProvider(_: WeatherProvider, didReceiveError: Error)
+    """,
+            parameters: (weatherProvider, error),
+            escapingParameters: (weatherProvider, error),
+            superclassCall:
+                
+                Cuckoo.MockManager.crashOnProtocolSuperclassCall()
+                ,
+            defaultCall: __defaultImplStub!.weatherProvider(weatherProvider, didReceiveError: error))
+        
+    }
+    
+    
+
+     struct __StubbingProxy_WeatherProviderDelegate: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+    
+         init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        
+        
+        
+        func weatherProvider<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ weatherProvider: M1, didUpdateWeather weather: M2) -> Cuckoo.ProtocolStubNoReturnFunction<(WeatherProvider, Weather)> where M1.MatchedType == WeatherProvider, M2.MatchedType == Weather {
+            let matchers: [Cuckoo.ParameterMatcher<(WeatherProvider, Weather)>] = [wrap(matchable: weatherProvider) { $0.0 }, wrap(matchable: weather) { $0.1 }]
+            return .init(stub: cuckoo_manager.createStub(for: MockWeatherProviderDelegate.self, method:
+    """
+    weatherProvider(_: WeatherProvider, didUpdateWeather: Weather)
+    """, parameterMatchers: matchers))
+        }
+        
+        
+        
+        
+        func weatherProvider<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ weatherProvider: M1, didReceiveError error: M2) -> Cuckoo.ProtocolStubNoReturnFunction<(WeatherProvider, Error)> where M1.MatchedType == WeatherProvider, M2.MatchedType == Error {
+            let matchers: [Cuckoo.ParameterMatcher<(WeatherProvider, Error)>] = [wrap(matchable: weatherProvider) { $0.0 }, wrap(matchable: error) { $0.1 }]
+            return .init(stub: cuckoo_manager.createStub(for: MockWeatherProviderDelegate.self, method:
+    """
+    weatherProvider(_: WeatherProvider, didReceiveError: Error)
+    """, parameterMatchers: matchers))
+        }
+        
+        
+    }
+
+     struct __VerificationProxy_WeatherProviderDelegate: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+    
+         init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+    
+        
+    
+        
+        
+        
+        @discardableResult
+        func weatherProvider<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ weatherProvider: M1, didUpdateWeather weather: M2) -> Cuckoo.__DoNotUse<(WeatherProvider, Weather), Void> where M1.MatchedType == WeatherProvider, M2.MatchedType == Weather {
+            let matchers: [Cuckoo.ParameterMatcher<(WeatherProvider, Weather)>] = [wrap(matchable: weatherProvider) { $0.0 }, wrap(matchable: weather) { $0.1 }]
+            return cuckoo_manager.verify(
+    """
+    weatherProvider(_: WeatherProvider, didUpdateWeather: Weather)
+    """, callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
+        
+        
+        
+        
+        @discardableResult
+        func weatherProvider<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ weatherProvider: M1, didReceiveError error: M2) -> Cuckoo.__DoNotUse<(WeatherProvider, Error), Void> where M1.MatchedType == WeatherProvider, M2.MatchedType == Error {
+            let matchers: [Cuckoo.ParameterMatcher<(WeatherProvider, Error)>] = [wrap(matchable: weatherProvider) { $0.0 }, wrap(matchable: error) { $0.1 }]
+            return cuckoo_manager.verify(
+    """
+    weatherProvider(_: WeatherProvider, didReceiveError: Error)
+    """, callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
+        
+        
+    }
+}
+
+
+ class WeatherProviderDelegateStub: WeatherProviderDelegate {
+    
+
+    
+
+    
+    
+    
+    
+     func weatherProvider(_ weatherProvider: WeatherProvider, didUpdateWeather weather: Weather)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+    
+    
+    
+    
+     func weatherProvider(_ weatherProvider: WeatherProvider, didReceiveError error: Error)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
