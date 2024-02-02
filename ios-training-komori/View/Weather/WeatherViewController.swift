@@ -18,6 +18,7 @@ final class WeatherViewController: UIViewController {
     @IBOutlet @ViewLoading var weatherImage: UIImageView
     @IBOutlet @ViewLoading var minTemperatureLabel: UILabel
     @IBOutlet @ViewLoading var maxTemperatureLabel: UILabel
+    @IBOutlet @ViewLoading var loadingIndicator: UIActivityIndicatorView
 
     init?(
         coder: NSCoder,
@@ -56,6 +57,7 @@ private extension WeatherViewController {
                 if let weather {
                     self?.updateViews(with: weather)
                 }
+                self?.loadingIndicator.stopAnimating()
             }
             .store(in: &subscriptions)
 
@@ -63,6 +65,7 @@ private extension WeatherViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 self?.showAlert(for: error)
+                self?.loadingIndicator.stopAnimating()
             }
             .store(in: &subscriptions)
 
@@ -173,6 +176,7 @@ private extension WeatherViewController {
 // MARK: - Data Management
 private extension WeatherViewController {
     func reload() {
+        loadingIndicator.startAnimating()
         weatherProvider.fetch(area: area, date: Date())
     }
 }

@@ -51,6 +51,9 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LB4-0j-fiS">
+                                <rect key="frame" x="186.66666666666666" y="534.33333333333337" width="20" height="80"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJc-5M-ydg" userLabel="Close Button">
                                 <rect key="frame" x="114" y="614.33333333333337" width="67" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
@@ -71,17 +74,21 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="LB4-0j-fiS" firstAttribute="bottom" secondItem="aJc-5M-ydg" secondAttribute="top" id="Kq5-Er-U41"/>
                             <constraint firstItem="dCK-6b-Yh1" firstAttribute="top" secondItem="TKr-E4-YZM" secondAttribute="bottom" constant="80" id="Mxx-EV-VYp"/>
                             <constraint firstItem="TKr-E4-YZM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="NIc-mv-7TD"/>
                             <constraint firstItem="dCK-6b-Yh1" firstAttribute="centerX" secondItem="hm5-yg-9cu" secondAttribute="centerX" id="Od8-ZF-3G5"/>
                             <constraint firstItem="TKr-E4-YZM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Os9-LO-ESK"/>
                             <constraint firstItem="TKr-E4-YZM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xqq-y5-LSc"/>
                             <constraint firstItem="aJc-5M-ydg" firstAttribute="centerX" secondItem="WPO-22-TZ1" secondAttribute="centerX" id="YNy-hl-ooD"/>
+                            <constraint firstItem="LB4-0j-fiS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YZP-pO-zbz"/>
+                            <constraint firstItem="LB4-0j-fiS" firstAttribute="top" secondItem="TKr-E4-YZM" secondAttribute="bottom" id="mn6-YD-7Xe"/>
                             <constraint firstItem="aJc-5M-ydg" firstAttribute="top" secondItem="TKr-E4-YZM" secondAttribute="bottom" constant="80" id="y1N-Qj-Fwl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ubu-mu-Gnr"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="LB4-0j-fiS" id="jUb-Xi-4ha"/>
                         <outlet property="maxTemperatureLabel" destination="hm5-yg-9cu" id="nRK-aS-4wH"/>
                         <outlet property="minTemperatureLabel" destination="WPO-22-TZ1" id="wqT-Pi-ll6"/>
                         <outlet property="weatherImage" destination="sjz-7K-reb" id="9pW-5V-5RH"/>
