@@ -31,14 +31,16 @@ final class WeatherModel: WeatherProvider {
     }
 
     func fetch(area: String, date: Date) {
-        do {
-            let requestJson = try encodeRequest(area: area, date: date)
-            let responseJson = try YumemiWeather.fetchWeather(requestJson)
-            let weather = try decodeResponse(responseJson)
+        DispatchQueue.global().async { [self] in
+            do {
+                let requestJson = try encodeRequest(area: area, date: date)
+                let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
+                let fetchedWeather = try decodeResponse(responseJson)
 
-            self.weather = weather
-        } catch {
-            errorSubject.send(error)
+                weather = fetchedWeather
+            } catch {
+                errorSubject.send(error)
+            }
         }
     }
 }

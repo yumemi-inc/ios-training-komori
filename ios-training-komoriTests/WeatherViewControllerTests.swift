@@ -74,7 +74,12 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherSubject.send(weather)
 
         // Then
-        XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_sunny"))
+        let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_sunny")
+        DispatchQueue.main.async {
+            XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_sunny"))
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 
     func testCloudyImageIsSetIfCloudy() {
@@ -98,7 +103,12 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherSubject.send(weather)
 
         // Then
-        XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_cloudy"))
+        let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_cloudy")
+        DispatchQueue.main.async {
+            XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_cloudy"))
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 
     func testRainyImageIsSetIfRainy() {
@@ -122,7 +132,12 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherSubject.send(weather)
 
         // Then
-        XCTAssertEqual(weatherViewController.weatherImage.image, UIImage(named: "img_rainy"))
+        let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_rainy")
+        DispatchQueue.main.async {
+            XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_rainy"))
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 
     func testTemperatureLabelsAreCorrectlySet() {
@@ -146,7 +161,12 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherSubject.send(weather)
 
         // Then
-        XCTAssertEqual(weatherViewController.minTemperatureLabel.text, "-10")
-        XCTAssertEqual(weatherViewController.maxTemperatureLabel.text, "10")
+        let expectation = XCTestExpectation(description: "Temperature labels should be updated to -10 / 10")
+        DispatchQueue.main.async {
+            XCTAssertEqual(self.weatherViewController.minTemperatureLabel.text, "-10")
+            XCTAssertEqual(self.weatherViewController.maxTemperatureLabel.text, "10")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 }
