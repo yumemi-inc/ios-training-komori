@@ -6,29 +6,25 @@
 //
 
 import Foundation
-import Combine
 import YumemiWeather
 
 protocol WeatherProvider {
 
-    var weatherPublisher: AnyPublisher<Weather?, Never> { get }
-
-    var errorPublisher: AnyPublisher<Error, Never> { get }
+    var delegate: WeatherProviderDelegate? { get set }
 
     func fetch(area: String, date: Date)
 }
 
+protocol WeatherProviderDelegate: AnyObject {
+
+    func weatherProvider(_ weatherProvider: WeatherProvider, didUpdateWeather weather: Weather)
+
+    func weatherProvider(_ weatherProvider: WeatherProvider, didReceiveError error: Error)
+}
+
 final class WeatherModel: WeatherProvider {
 
-    @Published private(set) var weather: Weather?
-    var weatherPublisher: AnyPublisher<Weather?, Never> {
-        $weather.eraseToAnyPublisher()
-    }
-
-    private let errorSubject: PassthroughSubject<Error, Never> = .init()
-    var errorPublisher: AnyPublisher<Error, Never> {
-        errorSubject.eraseToAnyPublisher()
-    }
+    weak var delegate: WeatherProviderDelegate?
 
     func fetch(area: String, date: Date) {
         DispatchQueue.global().async { [self] in
@@ -37,16 +33,16 @@ final class WeatherModel: WeatherProvider {
                 let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
                 let fetchedWeather = try decodeResponse(responseJson)
 
-                weather = fetchedWeather
+                delegate?.weatherProvider(self, didUpdateWeather: fetchedWeather)
             } catch {
-                errorSubject.send(error)
+                delegate?.weatherProvider(self, didReceiveError: error)
             }
         }
     }
 }
 
 private extension WeatherModel {
-    
+
     func encodeRequest(area: String, date: Date) throws -> String {
         let request = WeatherRequest(area: area, date: date)
         let requestJson = try WeatherMapper.encode(request)

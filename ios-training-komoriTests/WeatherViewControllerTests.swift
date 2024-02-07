@@ -7,16 +7,23 @@
 
 import XCTest
 import Cuckoo
-import Combine
 @testable import ios_training_komori
 
 final class WeatherViewControllerTests: XCTestCase {
 
     private var mockWeatherProvider: MockWeatherProvider!
+    private var weatherProviderDelegate: WeatherProviderDelegate!
     private var weatherViewController: WeatherViewController!
 
     override func setUpWithError() throws {
         self.mockWeatherProvider = MockWeatherProvider()
+
+        stub(mockWeatherProvider) { stub in
+            when(stub.delegate.get).thenReturn(self.weatherProviderDelegate)
+            when(stub.delegate.set(any())).then { delegate in
+                self.weatherProviderDelegate = delegate
+            }
+        }
 
         let storyboard = UIStoryboard(name: "WeatherScreen", bundle: nil)
         weatherViewController = storyboard.instantiateViewController(identifier: "weatherViewController") { coder in
@@ -29,19 +36,13 @@ final class WeatherViewControllerTests: XCTestCase {
 
     override func tearDownWithError() throws {
         mockWeatherProvider = nil
+        weatherProviderDelegate = nil
         weatherViewController = nil
     }
 
     func testWeatherGetsReloadedOnReloadButtonTapped() {
         // Given
         stub(mockWeatherProvider) { stub in
-            let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
-            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
-            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
-
-            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
-            when(stub.errorPublisher.get).thenReturn(errorPublisher)
-
             when(stub.fetch(area: any(), date: any())).thenDoNothing()
         }
 
@@ -55,23 +56,15 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testSunnyImageIsSetIfSunny() {
         // Given
-        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
         let weather = Weather(
             condition: .sunny,
             minTemperature: 0,
             maxTemperature: 0
         )
-        stub(mockWeatherProvider) { stub in
-            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
-            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
-
-            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
-            when(stub.errorPublisher.get).thenReturn(errorPublisher)
-        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherSubject.send(weather)
+        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
 
         // Then
         let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_sunny")
@@ -84,23 +77,15 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testCloudyImageIsSetIfCloudy() {
         // Given
-        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
         let weather = Weather(
             condition: .cloudy,
             minTemperature: 0,
             maxTemperature: 0
         )
-        stub(mockWeatherProvider) { stub in
-            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
-            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
-
-            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
-            when(stub.errorPublisher.get).thenReturn(errorPublisher)
-        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherSubject.send(weather)
+        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
 
         // Then
         let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_cloudy")
@@ -113,23 +98,15 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testRainyImageIsSetIfRainy() {
         // Given
-        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
         let weather = Weather(
             condition: .rainy,
             minTemperature: 0,
             maxTemperature: 0
         )
-        stub(mockWeatherProvider) { stub in
-            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
-            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
-
-            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
-            when(stub.errorPublisher.get).thenReturn(errorPublisher)
-        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherSubject.send(weather)
+        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
 
         // Then
         let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_rainy")
@@ -142,23 +119,15 @@ final class WeatherViewControllerTests: XCTestCase {
 
     func testTemperatureLabelsAreCorrectlySet() {
         // Given
-        let weatherSubject = CurrentValueSubject<Weather?, Never>(nil)
         let weather = Weather(
             condition: .sunny,
             minTemperature: -10,
             maxTemperature: 10
         )
-        stub(mockWeatherProvider) { stub in
-            let weatherPublisher = weatherSubject.eraseToAnyPublisher()
-            when(stub.weatherPublisher.get).thenReturn(weatherPublisher)
-
-            let errorPublisher: AnyPublisher<Error, Never> = Empty().eraseToAnyPublisher()
-            when(stub.errorPublisher.get).thenReturn(errorPublisher)
-        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherSubject.send(weather)
+        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
 
         // Then
         let expectation = XCTestExpectation(description: "Temperature labels should be updated to -10 / 10")
