@@ -97,8 +97,8 @@ private extension WeatherViewController {
     }
 
     func updateTemperatureLabels(min minTemperature: Int, max maxTemperature: Int) {
-        minTemperatureLabel.text = String(minTemperature)
-        maxTemperatureLabel.text = String(maxTemperature)
+        minTemperatureLabel.text = minTemperature.description
+        maxTemperatureLabel.text = maxTemperature.description
     }
 
     func showAlert(for error: Error) {
