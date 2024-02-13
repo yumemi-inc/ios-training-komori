@@ -12,18 +12,10 @@ import Cuckoo
 final class WeatherViewControllerTests: XCTestCase {
 
     private var mockWeatherProvider: MockWeatherProvider!
-    private var weatherProviderDelegate: WeatherProviderDelegate!
     private var weatherViewController: WeatherViewController!
 
     override func setUpWithError() throws {
         self.mockWeatherProvider = MockWeatherProvider()
-
-        stub(mockWeatherProvider) { stub in
-            when(stub.delegate.get).thenReturn(self.weatherProviderDelegate)
-            when(stub.delegate.set(any())).then { delegate in
-                self.weatherProviderDelegate = delegate
-            }
-        }
 
         let storyboard = UIStoryboard(name: "WeatherScreen", bundle: nil)
         weatherViewController = storyboard.instantiateViewController(identifier: "weatherViewController") { coder in
@@ -36,14 +28,13 @@ final class WeatherViewControllerTests: XCTestCase {
 
     override func tearDownWithError() throws {
         mockWeatherProvider = nil
-        weatherProviderDelegate = nil
         weatherViewController = nil
     }
 
     func testWeatherGetsReloadedOnReloadButtonTapped() {
         // Given
         stub(mockWeatherProvider) { stub in
-            when(stub.fetch(area: any(), date: any())).thenDoNothing()
+            when(stub.fetch(area: any(), date: any(), completion: any())).thenDoNothing()
         }
 
         // When
@@ -51,7 +42,7 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherViewController.onReloadButtonTapped(UIButton())
 
         // Then
-        verify(mockWeatherProvider).fetch(area: any(), date: any())
+        verify(mockWeatherProvider).fetch(area: any(), date: any(), completion: any())
     }
 
     func testSunnyImageIsSetIfSunny() {
@@ -61,10 +52,15 @@ final class WeatherViewControllerTests: XCTestCase {
             minTemperature: 0,
             maxTemperature: 0
         )
+        stub(mockWeatherProvider) { stub in
+            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
+                completion(.success(weather))
+            }
+        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
+        weatherViewController.onReloadButtonTapped(UIButton())
 
         // Then
         let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_sunny")
@@ -82,10 +78,15 @@ final class WeatherViewControllerTests: XCTestCase {
             minTemperature: 0,
             maxTemperature: 0
         )
+        stub(mockWeatherProvider) { stub in
+            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
+                completion(.success(weather))
+            }
+        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
+        weatherViewController.onReloadButtonTapped(UIButton())
 
         // Then
         let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_cloudy")
@@ -103,10 +104,15 @@ final class WeatherViewControllerTests: XCTestCase {
             minTemperature: 0,
             maxTemperature: 0
         )
+        stub(mockWeatherProvider) { stub in
+            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
+                completion(.success(weather))
+            }
+        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
+        weatherViewController.onReloadButtonTapped(UIButton())
 
         // Then
         let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_rainy")
@@ -124,10 +130,15 @@ final class WeatherViewControllerTests: XCTestCase {
             minTemperature: -10,
             maxTemperature: 10
         )
+        stub(mockWeatherProvider) { stub in
+            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
+                completion(.success(weather))
+            }
+        }
 
         // When
         weatherViewController.loadViewIfNeeded()
-        weatherProviderDelegate.weatherProvider(self.mockWeatherProvider, didUpdateWeather: weather)
+        weatherViewController.onReloadButtonTapped(UIButton())
 
         // Then
         let expectation = XCTestExpectation(description: "Temperature labels should be updated to -10 / 10")
