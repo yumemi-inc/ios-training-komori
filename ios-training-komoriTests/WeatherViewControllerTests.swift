@@ -31,122 +31,147 @@ final class WeatherViewControllerTests: XCTestCase {
         weatherViewController = nil
     }
 
-    func testWeatherGetsReloadedOnReloadButtonTapped() {
+    func testWeatherGetsReloadedOnReloadButtonTapped() async {
         // Given
-        stub(mockWeatherProvider) { stub in
-            when(stub.fetch(area: any(), date: any(), completion: any())).thenDoNothing()
-        }
-
-        // When
-        weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
-
-        // Then
-        verify(mockWeatherProvider).fetch(area: any(), date: any(), completion: any())
-    }
-
-    func testSunnyImageIsSetIfSunny() {
-        // Given
+        let expectation = XCTestExpectation(description: "Fetch method should be called")
         let weather = Weather(
             condition: .sunny,
             minTemperature: 0,
             maxTemperature: 0
         )
+        let result = Result<Weather, Error>.success(weather)
         stub(mockWeatherProvider) { stub in
-            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
-                completion(.success(weather))
+            when(stub.fetch(area: any(), date: any())).then { _, _ in
+                expectation.fulfill()
+                return result
             }
         }
 
         // When
-        weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        await MainActor.run {
+            weatherViewController.loadViewIfNeeded()
+            weatherViewController.onReloadButtonTapped(UIButton())
+        }
 
         // Then
-        let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_sunny")
-        DispatchQueue.main.async {
-            XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_sunny"))
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 5)
+        await fulfillment(of: [expectation], timeout: 5)
+        verify(mockWeatherProvider).fetch(area: any(), date: any())
     }
 
-    func testCloudyImageIsSetIfCloudy() {
+    func testSunnyImageIsSetIfSunny() async {
         // Given
+        let expectation = XCTestExpectation(description: "Weather image should be updated to img_sunny")
+        let weather = Weather(
+            condition: .sunny,
+            minTemperature: 0,
+            maxTemperature: 0
+        )
+        let result = Result<Weather, Error>.success(weather)
+        stub(mockWeatherProvider) { stub in
+            when(stub.fetch(area: any(), date: any())).then { _, _ in
+                expectation.fulfill()
+                return result
+            }
+        }
+
+        // When
+        await MainActor.run {
+            weatherViewController.loadViewIfNeeded()
+            weatherViewController.onReloadButtonTapped(UIButton())
+        }
+
+        // Then
+        await fulfillment(of: [expectation], timeout: 5)
+        await MainActor.run {
+            XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_sunny"))
+        }
+    }
+
+    func testCloudyImageIsSetIfCloudy() async {
+        // Given
+        let expectation = XCTestExpectation(description: "Weather image should be updated to img_cloudy")
         let weather = Weather(
             condition: .cloudy,
             minTemperature: 0,
             maxTemperature: 0
         )
+        let result = Result<Weather, Error>.success(weather)
         stub(mockWeatherProvider) { stub in
-            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
-                completion(.success(weather))
+            when(stub.fetch(area: any(), date: any())).then { _, _ in
+                expectation.fulfill()
+                return result
             }
         }
 
         // When
-        weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        await MainActor.run {
+            weatherViewController.loadViewIfNeeded()
+            weatherViewController.onReloadButtonTapped(UIButton())
+        }
 
         // Then
-        let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_cloudy")
-        DispatchQueue.main.async {
+        await fulfillment(of: [expectation], timeout: 5)
+        await MainActor.run {
             XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_cloudy"))
-            expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 5)
     }
 
-    func testRainyImageIsSetIfRainy() {
+    func testRainyImageIsSetIfRainy() async {
         // Given
+        let expectation = XCTestExpectation(description: "Weather image should be updated to img_rainy")
         let weather = Weather(
             condition: .rainy,
             minTemperature: 0,
             maxTemperature: 0
         )
+        let result = Result<Weather, Error>.success(weather)
         stub(mockWeatherProvider) { stub in
-            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
-                completion(.success(weather))
+            when(stub.fetch(area: any(), date: any())).then { _, _ in
+                expectation.fulfill()
+                return result
             }
         }
 
         // When
-        weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        await MainActor.run {
+            weatherViewController.loadViewIfNeeded()
+            weatherViewController.onReloadButtonTapped(UIButton())
+        }
 
         // Then
-        let expectation = XCTestExpectation(description: "Weather image should be updated to 'img_rainy")
-        DispatchQueue.main.async {
+        await fulfillment(of: [expectation], timeout: 5)
+        await MainActor.run {
             XCTAssertEqual(self.weatherViewController.weatherImage.image, UIImage(named: "img_rainy"))
-            expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 5)
     }
 
-    func testTemperatureLabelsAreCorrectlySet() {
+    func testTemperatureLabelsAreCorrectlySet() async {
         // Given
+        let expectation = XCTestExpectation(description: "Temperature labels should be updated to -10 / 10")
         let weather = Weather(
             condition: .sunny,
             minTemperature: -10,
             maxTemperature: 10
         )
+        let result = Result<Weather, Error>.success(weather)
         stub(mockWeatherProvider) { stub in
-            when(stub.fetch(area: any(), date: any(), completion: any())).then { _, _, completion in
-                completion(.success(weather))
+            when(stub.fetch(area: any(), date: any())).then { _, _ in
+                expectation.fulfill()
+                return result
             }
         }
 
         // When
-        weatherViewController.loadViewIfNeeded()
-        weatherViewController.onReloadButtonTapped(UIButton())
+        await MainActor.run {
+            weatherViewController.loadViewIfNeeded()
+            weatherViewController.onReloadButtonTapped(UIButton())
+        }
 
         // Then
-        let expectation = XCTestExpectation(description: "Temperature labels should be updated to -10 / 10")
-        DispatchQueue.main.async {
+        await fulfillment(of: [expectation], timeout: 5)
+        await MainActor.run {
             XCTAssertEqual(self.weatherViewController.minTemperatureLabel.text, "-10")
             XCTAssertEqual(self.weatherViewController.maxTemperatureLabel.text, "10")
-            expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 5)
     }
 }
