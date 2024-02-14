@@ -174,32 +174,17 @@ private extension WeatherViewController {
     func reload() {
         startLoadingIndicator()
 
-        weatherProvider.fetch(area: area, date: Date()) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case let .success(weather):
-                    self?.updateViews(with: weather)
-                case let .failure(error):
-                    self?.showAlert(for: error)
-                }
+        Task {
+            let result = await weatherProvider.fetch(area: area, date: Date())
 
-                self?.stopLoadingIndicator()
+            switch result {
+            case .success(let weather):
+                updateViews(with: weather)
+            case .failure(let error):
+                showAlert(for: error)
             }
+
+            stopLoadingIndicator()
         }
-
-
-//        // Fetch weather with optional closure
-//        weatherProvider.fetchWithOptionalClosure(area: area, date: Date()) { [weak self] result in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case let .success(weather):
-//                    self?.updateViews(with: weather)
-//                case let .failure(error):
-//                    self?.showAlert(for: error)
-//                }
-//
-//                self?.stopLoadingIndicator()
-//            }
-//        }
     }
 }
