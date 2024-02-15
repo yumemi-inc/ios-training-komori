@@ -12,52 +12,23 @@ protocol WeatherProvider {
 
     func fetch(
         area: String,
-        date: Date,
-        completion: @escaping (Result<Weather, Error>) -> Void
-    )
-
-    func fetchWithOptionalClosure(
-        area: String,
-        date: Date,
-        completion: ((Result<Weather, Error>) -> Void)?
-    )
+        date: Date
+    ) async -> Result<Weather, Error>
 }
 
 final class WeatherModel: WeatherProvider {
 
     func fetch(
         area: String,
-        date: Date,
-        completion: @escaping (Result<Weather, Error>) -> Void
-    ) {
-        DispatchQueue.global().async { [self] in
-            do {
-                let requestJson = try encodeRequest(area: area, date: date)
-                let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
-                let fetchedWeather = try decodeResponse(responseJson)
-
-                completion(.success(fetchedWeather))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-
-    func fetchWithOptionalClosure(
-        area: String,
-        date: Date,
-        completion: ((Result<Weather, Error>) -> Void)? = nil
-    ) {
-        DispatchQueue.global().async { [self] in
-            do {
-                let requestJson = try encodeRequest(area: area, date: date)
-                let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
-                let fetchedWeather = try decodeResponse(responseJson)
-
-                completion?(.success(fetchedWeather))
-            } catch {
-                completion?(.failure(error))
-            }
+        date: Date
+    ) async -> Result<Weather, Error> {
+        do {
+            let requestJson = try encodeRequest(area: area, date: date)
+            let responseJson = try YumemiWeather.syncFetchWeather(requestJson)
+            let fetchedWeather = try decodeResponse(responseJson)
+            return .success(fetchedWeather)
+        } catch {
+            return .failure(error)
         }
     }
 }

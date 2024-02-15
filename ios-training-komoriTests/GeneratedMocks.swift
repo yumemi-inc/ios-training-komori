@@ -41,39 +41,19 @@ import YumemiWeather
     
     
     
-     func fetch(area: String, date: Date, completion: @escaping (Result<Weather, Error>) -> Void)  {
+     func fetch(area: String, date: Date) async -> Result<Weather, Error> {
         
-    return cuckoo_manager.call(
+    return await cuckoo_manager.call(
     """
-    fetch(area: String, date: Date, completion: @escaping (Result<Weather, Error>) -> Void)
+    fetch(area: String, date: Date) async -> Result<Weather, Error>
     """,
-            parameters: (area, date, completion),
-            escapingParameters: (area, date, completion),
+            parameters: (area, date),
+            escapingParameters: (area, date),
             superclassCall:
                 
                 Cuckoo.MockManager.crashOnProtocolSuperclassCall()
                 ,
-            defaultCall: __defaultImplStub!.fetch(area: area, date: date, completion: completion))
-        
-    }
-    
-    
-    
-    
-    
-     func fetchWithOptionalClosure(area: String, date: Date, completion: ((Result<Weather, Error>) -> Void)?)  {
-        
-    return cuckoo_manager.call(
-    """
-    fetchWithOptionalClosure(area: String, date: Date, completion: ((Result<Weather, Error>) -> Void)?)
-    """,
-            parameters: (area, date, completion),
-            escapingParameters: (area, date, completion),
-            superclassCall:
-                
-                Cuckoo.MockManager.crashOnProtocolSuperclassCall()
-                ,
-            defaultCall: __defaultImplStub!.fetchWithOptionalClosure(area: area, date: date, completion: completion))
+            defaultCall: await __defaultImplStub!.fetch(area: area, date: date))
         
     }
     
@@ -89,22 +69,11 @@ import YumemiWeather
         
         
         
-        func fetch<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(area: M1, date: M2, completion: M3) -> Cuckoo.ProtocolStubNoReturnFunction<(String, Date, (Result<Weather, Error>) -> Void)> where M1.MatchedType == String, M2.MatchedType == Date, M3.MatchedType == (Result<Weather, Error>) -> Void {
-            let matchers: [Cuckoo.ParameterMatcher<(String, Date, (Result<Weather, Error>) -> Void)>] = [wrap(matchable: area) { $0.0 }, wrap(matchable: date) { $0.1 }, wrap(matchable: completion) { $0.2 }]
+        func fetch<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(area: M1, date: M2) -> Cuckoo.ProtocolStubFunction<(String, Date), Result<Weather, Error>> where M1.MatchedType == String, M2.MatchedType == Date {
+            let matchers: [Cuckoo.ParameterMatcher<(String, Date)>] = [wrap(matchable: area) { $0.0 }, wrap(matchable: date) { $0.1 }]
             return .init(stub: cuckoo_manager.createStub(for: MockWeatherProvider.self, method:
     """
-    fetch(area: String, date: Date, completion: @escaping (Result<Weather, Error>) -> Void)
-    """, parameterMatchers: matchers))
-        }
-        
-        
-        
-        
-        func fetchWithOptionalClosure<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.OptionalMatchable>(area: M1, date: M2, completion: M3) -> Cuckoo.ProtocolStubNoReturnFunction<(String, Date, ((Result<Weather, Error>) -> Void)?)> where M1.MatchedType == String, M2.MatchedType == Date, M3.OptionalMatchedType == ((Result<Weather, Error>) -> Void) {
-            let matchers: [Cuckoo.ParameterMatcher<(String, Date, ((Result<Weather, Error>) -> Void)?)>] = [wrap(matchable: area) { $0.0 }, wrap(matchable: date) { $0.1 }, wrap(matchable: completion) { $0.2 }]
-            return .init(stub: cuckoo_manager.createStub(for: MockWeatherProvider.self, method:
-    """
-    fetchWithOptionalClosure(area: String, date: Date, completion: ((Result<Weather, Error>) -> Void)?)
+    fetch(area: String, date: Date) async -> Result<Weather, Error>
     """, parameterMatchers: matchers))
         }
         
@@ -128,23 +97,11 @@ import YumemiWeather
         
         
         @discardableResult
-        func fetch<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(area: M1, date: M2, completion: M3) -> Cuckoo.__DoNotUse<(String, Date, (Result<Weather, Error>) -> Void), Void> where M1.MatchedType == String, M2.MatchedType == Date, M3.MatchedType == (Result<Weather, Error>) -> Void {
-            let matchers: [Cuckoo.ParameterMatcher<(String, Date, (Result<Weather, Error>) -> Void)>] = [wrap(matchable: area) { $0.0 }, wrap(matchable: date) { $0.1 }, wrap(matchable: completion) { $0.2 }]
+        func fetch<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(area: M1, date: M2) -> Cuckoo.__DoNotUse<(String, Date), Result<Weather, Error>> where M1.MatchedType == String, M2.MatchedType == Date {
+            let matchers: [Cuckoo.ParameterMatcher<(String, Date)>] = [wrap(matchable: area) { $0.0 }, wrap(matchable: date) { $0.1 }]
             return cuckoo_manager.verify(
     """
-    fetch(area: String, date: Date, completion: @escaping (Result<Weather, Error>) -> Void)
-    """, callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-        }
-        
-        
-        
-        
-        @discardableResult
-        func fetchWithOptionalClosure<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.OptionalMatchable>(area: M1, date: M2, completion: M3) -> Cuckoo.__DoNotUse<(String, Date, ((Result<Weather, Error>) -> Void)?), Void> where M1.MatchedType == String, M2.MatchedType == Date, M3.OptionalMatchedType == ((Result<Weather, Error>) -> Void) {
-            let matchers: [Cuckoo.ParameterMatcher<(String, Date, ((Result<Weather, Error>) -> Void)?)>] = [wrap(matchable: area) { $0.0 }, wrap(matchable: date) { $0.1 }, wrap(matchable: completion) { $0.2 }]
-            return cuckoo_manager.verify(
-    """
-    fetchWithOptionalClosure(area: String, date: Date, completion: ((Result<Weather, Error>) -> Void)?)
+    fetch(area: String, date: Date) async -> Result<Weather, Error>
     """, callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
@@ -162,16 +119,8 @@ import YumemiWeather
     
     
     
-     func fetch(area: String, date: Date, completion: @escaping (Result<Weather, Error>) -> Void)   {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
-    }
-    
-    
-    
-    
-    
-     func fetchWithOptionalClosure(area: String, date: Date, completion: ((Result<Weather, Error>) -> Void)?)   {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
+     func fetch(area: String, date: Date) async -> Result<Weather, Error>  {
+        return DefaultValueRegistry.defaultValue(for: (Result<Weather, Error>).self)
     }
     
     
